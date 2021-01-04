@@ -1,40 +1,37 @@
-\documentclass[norsk, a4paper, twocolumn, oneside]{memoir}
-
+\documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=17mm]{geometry}
 \usepackage[norsk]{babel}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathrsfs}
-\usepackage[total={17cm,27cm}]{geometry}
-\usepackage[table]{xcolor}
-\usepackage{systeme}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{scrextend}
 \usepackage{hyperref}
-\usepackage{ifthen}
-\usepackage{textgreek}
-\usepackage{multirow}
-\usepackage{placeins}
-\usepackage{caption}
-\usepackage{tcolorbox}
-\usepackage{float}
-\usepackage{dirtytalk}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{mdframed}
 \usepackage[american]{circuitikz}
+\usepackage[small]{titlesec}
 
-\setsecheadstyle{\bfseries\large}
-\usetikzlibrary{patterns,decorations.pathmorphing}
+\hypersetup{colorlinks=true, 
+			linkcolor=blue, 
+			filecolor=magneta,
+			urlcolor=cyan,
+            citecolor=black,
+}
 
+\setlength{\columnsep}{1cm}
 
-\newtheorem{thm}{Teorem}[chapter]
-\newtheorem{fishythm}[thm]{«Teorem»}
-\newtheorem*{thm-nn}{Teorem}
-\newtheorem{cor}[thm]{Korollar}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposisjon}
+\newtheorem{thm}{Teorem}\surroundwithmdframed{thm}
+
 \theoremstyle{definition}
 \newtheorem{exx}[thm]{\color{blue}Eksempel}
-\newtheorem*{defnx}{Definisjon}
-\newtheorem*{oppg}{Oppgave}
-\newtheorem*{merkx}{Merk}
-\newtheorem*{kommentarx}{Kommentar}
-\newtheorem*{spmx}{Spørsmål}
+\newtheorem{defnx}[thm]{Definisjon}
+\newtheorem{oppg}{Oppgave}
+\newtheorem{merkx}{Merk}
+\newtheorem{kommentarx}{Kommentar}
+\newtheorem{spmx}{Spørsmål}
 
 \newenvironment{defn}
 {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\defnx}
@@ -52,6 +49,9 @@
 
 \theoremstyle{remark}
 \newtheorem*{bevis}{Bevis}
+
+
+\usetikzlibrary{patterns,decorations.pathmorphing}
 
 \newcommand{\springfig}[6]{%
 \begin{scope}[xshift=#6,
@@ -82,14 +82,17 @@
   \end{scope}
 }
 
-
-
-\title{Andreordens Lineære Differensialligninger}
-\author{Magnus Christie Ørke}
-\date{Høst 2020}
-
 \begin{document}
-I dette kapitlet skal vi løse lineære andreordens differensiallikninger. Først behandler vi ligningene som genuint andreordens ligninger, og ser på ulike løsningsteknikker. Så skal vi se at andreordens ligninger kan skrives om til systemer av førsteordens ligninger ved hjelp av et variabelskifte, og at de to måtene å behandle ligningene på er i overensstemmelse.
+
+\begin{center}
+    \large{\textbf{Andreordens lineære differensialligninger}}
+    \\
+    \normalsize{Magnus Christie Ørke}
+\end{center}
+\vspace{\baselineskip}
+
+\begin{multicols*}{2}
+I dette kapitlet skal vi løse andreordens lineære differensiallikninger. Først behandler vi ligningene som genuint andreordens ligninger, og ser på ulike løsningsteknikker. Så skal vi se at andreordens ligninger kan skrives om til systemer av førsteordens ligninger ved hjelp av et variabelskifte, og at de to måtene å behandle ligningene på er i overensstemmelse.
 
 \begin{ex}
 Vi har tidligere sett at ligningen
@@ -99,14 +102,17 @@ Vi har tidligere sett at ligningen
 har generell løsning $c_1 \sin(t) + c_2 \cos(t)$. Dersom vi også har gitt to initialbetingelser
 \begin{equation*}
   y(0) = a \ \textnormal{ og } \ y'(0) = b
-\end{equation*} kan vi bestemme konstantene, og vi må ha $c_1 = b$ og $c_2 = a$.
+\end{equation*} kan vi bestemme konstantene $c_1$ og $c_2$, og vi får spesiell løsning
+\begin{equation*}
+  y(t) = b \sin(t) + a \cos(t).
+\end{equation*}
 \end{ex}
 
 
 \section*{Modellering av fysiske systemer}
-Differensialligninger er svært nyttige i beskrivelsen av systemer som involverer bevegelse og endring. I nesten alle grener av fysikk er differensiallikninger en sentral del av teorien, og ofte kan fysiske lover formuleres som differensialligninger. Et eksempel på dette er Newton's andre lov, som sier at summen av kreftene på et legeme er lik legemets masse multiplisert med akselerasjonen til legemet.
+Differensialligninger er svært nyttige for å beskrive systemer som involverer bevegelse og endring. I fysikk er differensiallikninger en sentral del av teorien, og ofte kan fysiske lover formuleres som differensialligninger. Et eksempel på dette er Newton's andre lov, som sier at summen av kreftene på et legeme er lik legemets masse multiplisert med akselerasjonen til legemet.
 
-For mange situasjoner, slik som turbulens og strømning i fluider, vet man rett og slett ikke om løsninger til ligningene som oppstår finnes, og man bruker derfor hovedsaklig numeriske metoder. Man kan likevel finne løsninger til ligningene for enkelte enkle systemer, og vi skal nå se på noen av disse.
+For mange situasjoner, slik som turbulens og strømning i fluider, er ligningene som oppstår svært vanskelige å løse. Derfor brukes hovedsaklig numeriske metoder. Man kan likevel finne løsninger til ligningene for enkelte enkle systemer, og vi skal nå se på noen av disse.
 
 \begin{ex} \label{ex:fjær}
   Under er en figur av et lodd med masse $m$ som henger i en fjær.
@@ -139,7 +145,7 @@ For mange situasjoner, slik som turbulens og strømning i fluider, vet man rett 
   \begin{equation*}
     m y''(t) + k y(t) = 0.
   \end{equation*}
-  Dette er en andreordens differensialligning med konstante koeffisienter. Den ukjente er funksjonen $y(t)$ som beskriver loddets posisjon i forhold til likevekt, avhengig av tid.
+  Dette er en andreordens differensialligning med konstante koeffisienter. Den ukjente er funksjonen $y(t)$ som beskriver loddets posisjon i forhold til likevekt avhengig av tid.
 \end{ex}
 
 \begin{ex} \label{ex:rc_parallell}
@@ -192,9 +198,9 @@ En lineær andreordens ordinær differensialligning (ODE) er en ligning som kan 
 \begin{equation} \label{eq:generell_andreordens_ode}
   y''(t) + p(t) y'(t) + q(t) y(t) = r(t),
 \end{equation}
-hvor $p(t)$, $q(t)$ og $r(t)$ er gitte funksjoner, og $y(t)$ er ukjent. Ligningen har her $1$ som koeffisient foran $y''$, og alle andreordens lineære differensialligninger kan skrives om til denne formen ved å dele på koeffisienten foran $y''$. Vi sier da at ligningene er på standard form.
+hvor $p(t)$, $q(t)$ og $r(t)$ er gitte funksjoner, og $y(t)$ er ukjent. Ligningen over har $1$ som koeffisient foran $y''$, og alle andreordens lineære differensialligninger kan skrives om til denne formen ved å dele på koeffisienten foran $y''$. Vi sier da at ligningen er på standard form.
 
-Ligningen kalles ordinær når den ukjente funksjonen $y$ bare er avhengig av en variabel, i dette tilfelle $t$.
+Ligningen kalles ordinær når den ukjente funksjonen $y$ bare er avhengig av én variabel, i dette tilfelle $t$.
 
 Dersom $r(t) = 0$ sier vi at ligningen er homogen. Vi skal også skille mellom ligninger med konstante koeffisienter, altså hvor $p(t)$ og $q(t)$ er konstanter, og ligninger hvor $p(t)$ og $q(t)$ er funksjoner av $t$.
 
@@ -206,14 +212,14 @@ for den ukjente funksjonen $y(t)$.
 
 Dersom funksjonen $y(t)$ er definert og to ganger kontinuerlig deriverbar på et åpent intervall $I$, og den i tillegg tilfredsstiller ligning \eqref{eq:generell_andreordens_ode}, sier vi at $y(t)$ er en løsning til \eqref{eq:generell_andreordens_ode}.
 
-Man kan spørre seg hvorfor vi introduserer løsninger på åpne intervaller og ikke bare behandler ligningen på hele den reelle tallinjen. Det er mange grunner til dette, men hovedsaklig gir det oss mer fleksibilitet. Vi kan for eksempel tenke oss at vi vil løse en ligning som beskriver utviklingen av en størrelse som funksjon av tid, og det er da mer naturlig å lete etter en løsning på et positivt tidsintervall $(0, T)$ enn å jobbe med alle tidspunkter, også negative. Dette spiller likevel en liten rolle i dette kapitlet.
+Man kan spørre seg hvorfor vi introduserer løsninger på åpne intervaller og ikke bare behandler ligningen på hele den reelle tallinjen. Det er mange grunner til dette, men hovedsaklig gir det oss mer fleksibilitet. Vi kan for eksempel tenke oss at vi vil løse en ligning som beskriver utviklingen av en størrelse som funksjon av tid, og det er da mer naturlig å lete etter en løsning på et positivt tidsintervall $(0, T)$ enn å jobbe med alle tidspunkter, også negative. Dette kommer likevel ikke til å spille en stor rolle i dette kapitlet.
 
 Heretter skal vi betrakte løsningsteknikker for andreordens ODE-er med konstante koeffisienter. Vi kommer alltid til å anta at høyresiden $r(x)$ er en kontinuerlig funksjon.
 
 
 \section*{Løsning av homogene ligninger}
 
-Vi skal se på en metode for å løse ligningen
+Vi skal nå se på en standard metode for å løse ligningen
 \begin{equation} \label{eq:homogen}
     y''(t) + p y'(t) + q y(t) = 0,
 \end{equation}
@@ -224,7 +230,7 @@ der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om l
 \end{thm}
 
 \begin{bevis}
-  Teoremet følger av at både ligningen og derivasjon er lineære. La $\alpha y_1(t) + \beta y_2(t)$ være en lineærkombinasjon av løsningene, for $\alpha, \beta \in \mathbb{C}$. Da har vi
+  Teoremet følger av at både ligningen, og operasjonen derivasjon, er lineære. La $\alpha y_1(t) + \beta y_2(t)$ være en lineærkombinasjon av løsningene, med $\alpha, \beta \in \mathbb{C}$. Da har vi
   \begin{equation*}
     \begin{split}
       & (\alpha y_1 + \beta y_2)'' + p (\alpha y_1 + \beta y_2)' + q (\alpha y_1 + \beta y_2) \\
@@ -234,19 +240,17 @@ der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om l
   hvor vi i siste steg har brukt antagelsen om at $y_1(t)$ og $y_2(t)$ er løsninger til ligningen. Dermed er $\alpha y_1(t) + \beta y_2(t)$ også en løsning.
 \end{bevis}
 
-\begin{defnx}
+\begin{defn}
     Med en generell løsning til ligning \eqref{eq:homogen} på et åpent intervall $I$ mener vi en funksjon på formen
     \begin{equation*}
       y_h(t) = c_1 y_1(t) + c_2 y_2(t),
     \end{equation*}
     hvor $c_1$ og $c_2$ er to ubestemte konstanter, og $y_1(t)$ og $y_2(t)$ er to lineært uavhengige funksjoner. Med en spesiell løsning til ligningen mener vi løsningen vi får ved å tilordne konstantene $c_1$ og $c_2$ i den generelle løsningen bestemte verdier gitt av initialbetingelser.
-\end{defnx}
+\end{defn}
 
-Husk at to funksjoner er lineært uavhengige dersom $\alpha y_1(t) + \beta y_2(t) = 0$ impliserer at $y_1(y) = 0 = y_2(t)$, for alle $\alpha, \beta \in \mathbb{C}$.
+Husk at to funksjoner er lineært uavhengige dersom $\alpha y_1(t) + \beta y_2(t) = 0$ impliserer at $y_1(y) = 0 = y_2(t)$, for alle $\alpha, \beta \in \mathbb{C}$. Hvis to lineært uavhengige funksjoner $y_1(t)$ og $y_2(t)$ begge løser \eqref{eq:homogen} sier vi at disse er en basis for løsningsrommet til ligningen.
 
-Hvis to lineært uavhengige funksjoner $y_1(t)$ og $y_2(t)$ begge løser \eqref{eq:homogen}, sier vi at disse er en basis for løsningsrommet til ligningen.
-
-Vi ønsker nå å finne en generell løsning til ligning \ref{eq:homogen} for vilkårlige koeffisienter $p$ og $q$. Innsetting av funksjonen $y(t) = e^{\lambda t}$ som en løsningskandidat gir
+Vi ønsker nå å finne en generell løsning til ligning \eqref{eq:homogen} for vilkårlige koeffisienter $p$ og $q$. Innsetting av funksjonen $y(t) = e^{\lambda t}$ som en løsningskandidat gir
 \begin{equation*}
   (\lambda^2 + p \lambda + q) e^{\lambda t} = 0.
 \end{equation*}
@@ -254,7 +258,7 @@ Dette betyr at dersom vi velger tallet $\lambda$ slik at
 \begin{equation*}
   \lambda^2 + p \lambda + q = 0  
 \end{equation*}
-er ligningen oppfylt, og $e^{\lambda t}$ er en løsning. Vi kaller andregradsplynomet $\lambda^2 + p \lambda + q$ den karakteristiske ligningen til \eqref{eq:homogen}, og dersom vi tillater komplekse tall for $\lambda$ sier algebraens fundamentalteorem at vi alltid finne to røtter $\lambda_1$ og $\lambda_2$ for den karakteristiske ligningen. Disse gir dermed løsningene
+er ligningen oppfylt, og $e^{\lambda t}$ er en løsning. Vi kaller andregradsplynomet $\lambda^2 + p \lambda + q$ den karakteristiske ligningen til \eqref{eq:homogen}, og dersom vi tillater komplekse tall for $\lambda$ sier algebraens fundamentalteorem at vi alltid finne to røtter $\lambda_1$ og $\lambda_2$ for den karakteristiske ligningen. Disse gir dermed to løsninger
 \begin{equation*}
   y_1(t) = e^{\lambda_1 t}\ \ \textnormal{ og }\ \ y_2(t) = e^{\lambda_2 t}.
 \end{equation*}
@@ -267,7 +271,7 @@ Vi har nå tre kvalitativt ulike muligheter for hva den generelle løsningen er.
 \end{equation*}
 fordi $e^{\lambda_1 t}$ og $e^{\lambda_2 t}$ er lineært uavhengige funksjoner for $\lambda_1 \neq \lambda_2$. Dette er det samme som å si at de to eksponensialfunksjonene utgjør en basis for løsningsrommet til ligningen.
 
-\paragraph*{Én reell rot med dobbel multiplisitet.} Dersom $p^2 - 4q = 0$ vet vi at vi får en reell rot $\lambda$ med dobbel multiplisitet. Dette betyr at vi må lete etter en annen, lineært uavhengig, funksjon for å finne en generell løsning. Ved innsetting finner vi at funksjonen $te^{\lambda t}$ også er en løsning, og vi har dermed generell løsning
+\paragraph*{Én reell rot med dobbel multiplisitet.} Dersom $p^2 - 4q = 0$ vet vi at vi får en reell rot $\lambda$ med dobbel multiplisitet. Dette betyr at vi må lete etter en annen lineært uavhengig funksjon for å finne en generell løsning. Ved innsetting finner vi at funksjonen $te^{\lambda t}$ også er en løsning, og vi har dermed generell løsning
 \begin{equation*}
   y_h(t) = (c_1 + c_2 t) e^{\lambda t}.
 \end{equation*}
@@ -314,7 +318,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 \end{ex}
 
 \begin{ex}
-  Vi kan legge til en friksjonskraft $F_f$ i fjærsystemet over. Dersom friksjonskraften er proporsjonal med hastigheten til loddet kan vi skrive $F_f = \gamma y'(t)$, der $\gamma$ er en friksjonskoeffisient. Ligningen for bevegelsen til loddet blir nå
+  Vi kan legge til en friksjonskraft $F_f$ i fjærsystemet over. Dersom friksjonskraften er proporsjonal med hastigheten til loddet kan vi skrive $F_f = \gamma y'(t)$, hvor $\gamma$ er en friksjonskoeffisient. Ligningen for bevegelsen til loddet blir nå
   \begin{equation*}
     m y''(t) + \gamma y'(t) + ky(t) = 0.
   \end{equation*}
@@ -352,12 +356,14 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
   \begin{equation*}
     \lambda = - \frac{1}{2 R C} \pm \sqrt{\frac{1}{(2 R C)^2} - \frac{1}{LC}}.
   \end{equation*}
-  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$ (Ohm), $L = 20 $ mH (Henry) og $C = 5$ $\mu$F (Farad), og at kretsen opplever en puls ved tiden $t = 0$ gitt som $V(0) = 50$ V (Volt) og $V'(0) = 0$. Da er $\lambda = -2000 \pm \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
+  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$, $L = 20 $ mH og $C = 5$ $\mu$F, og at kretsen blir utsatt for en puls ved tiden $t = 0$ gitt ved $V(0) = 50$ V og $V'(0) = 0$. Da er $\lambda = -2000 \pm \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
   \begin{equation*}
     V(t) = 50 e^{- 2000 t} \cos(\sqrt{6 \cdot 10^6} t),
   \end{equation*}
   for $t > 0$.
 \end{ex}
+
+Et viktig spørsmål er om de generelle løsningene vi har funnet i eksemplene ovenfor er unike, eller om det også finnes andre løsninger. Vi har følgende teorem.
 
 \begin{thm}
   Dersom funksjonen $y(t)$ løser den homogene ligningen \eqref{eq:homogen} på et åpent intervall $I$ med initialbetingelser
@@ -402,7 +408,7 @@ Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse
   \begin{equation*}
     Y(t_0) = y_h(t_0), \qquad Y'(t_0) = y_h'(t_0).
   \end{equation*}
-  På den annen side har vi ved Teorem \ref{thm:unik} at løsninger til initialverdiproblemet er unikt. Dermed må $Y(t) = y_h(t)$ på hele $I$, og vi har vist at en vilkårlig løsning alltid kan skrives på formen til en generell løsning.
+  På den annen side har vi ved Teorem \ref{thm:unik} at løsninger til initialverdiproblemet er unike. Dermed må $Y(t) = y_h(t)$ på hele $I$, og vi har vist at en vilkårlig løsning alltid kan skrives på formen til en generell løsning.
 \end{bevis}
 
 
@@ -413,17 +419,17 @@ Vi skal nå se hvordan vi kan løse ligninger på formen
 \end{equation}
 hvor $p$ og $q$ er to vilkårlige konstanter, og $r(t)$ er en kontinuerlig funksjon. Når vi under refererer til den tilhørende homogene ligningen, mener vi ligning \eqref{eq:inhomogen} med $r(t)$ satt til null. Løsningene til den homogene ligningen spiller nemlig en rolle i også for den inhomogene ligningen, som beskrevet i følgende definisjon.
 
-\begin{defnx}
+\begin{defn}
     Med en generell løsning til \eqref{eq:inhomogen} mener vi en løsning på formen
     \begin{equation*}
         y(t) = y_h(t) + y_p(t),    
     \end{equation*}
     hvor $y_h(t) = c_1 y_1(t) + c_2 y_2(t)$ er løsningen til den tilhørende homogene ligningen, og $y_p(t)$ er en partikulærløsning til den inhomogene ligningen som ikke inneholder ubestemte konstanter. Med en spesiell løsning mener vi løsningen vi får ved å tilordne konstantene $c_1$ og $c_2$ i $y_h(t)$ bestemte verdier i henhold til gitte initialbetingelser.
-\end{defnx}
+\end{defn}
 
-Det finnes flere løsningstrategier for ligning \eqref{eq:inhomogen}. Ubestemte koeffisienters metode er praktisk i mange situasjoner og lett å forstå, men kan ikke brukes til alle typer funskjoner $r(t)$. Variasjon av parametre er en helt generell metode, men kan kreve litt mer regning. Vi skal se på begge.
+Det finnes flere løsningstrategier for ligning \eqref{eq:inhomogen}. Ubestemte koeffisienters metode er praktisk i mange situasjoner og lett å forstå, men kan ikke brukes til alle typer funksjoner $r(t)$. Variasjon av parametre er en mer generell metode, men kan kreve litt mer regning. Vi skal se på begge.
 
-\paragraph*{Ubestemte koeffisienters metode.} Metoden går ut på å gjette hva den partikulærløsningen til ligningen kan være, basert på hvordan $r(t)$ ser ut. Først løser vi den homogene ligningen, før vi prøver å bestemme $y_p(t)$ ved å tilpasse parametre i en passende gjetningsfunksjon. For å illustrere dette ser vi på et eksempel.
+\paragraph*{Ubestemte koeffisienters metode.} Metoden går ut på å gjette hva den partikulærløsningen til ligningen kan være avhengig av formen på $r(t)$. Først løser vi den homogene ligningen, før vi prøver å bestemme $y_p(t)$ ved å tilpasse parametre i en passende gjetningsfunksjon. For å illustrere dette ser vi på et eksempel.
 
 \begin{ex}
   Betrakt ligningen
@@ -447,12 +453,12 @@ Det finnes flere løsningstrategier for ligning \eqref{eq:inhomogen}. Ubestemte 
 I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres mye under derivasjon. For å kunne gjette seg frem til riktig form på partikulærløsningen ut fra hvordan $r(t)$ ser ut kreves det erfaring. Likevel, siden metoden er mye brukt er det andre som har prøvd og feilet tidligere, og gode forslag til gjetninger kan oppsummeres som følger. Dersom $r(t)$ er gitt som en av funksjonene på venstre side i tabellen, bruker vi funksjonen til høyre, og tilpasser parametrene slik at ligningen blir oppfylt.
 
 \begin{center}
-  \begin{tabular}{m{5em} | m{11em}}
+  \begin{tabular}{m{0.15\textwidth} | m{0.25\textwidth}}
     $r(t)$ & $y_p(t)$ \\
     \hline \\
     $ke^{\lambda t}$ & $A e^{\lambda t}$ \\
     $k x^{n}$ & $A_n x^n + \cdots + A_0$ \\
-    $k \cos(\omega t)$, $k \sin(\omega t)$ & $A \cos(\omega t) + B\sin(\omega t)$ \\
+    $k \cos(\omega t)$, $k \sin(\omega t)$ & \noindent\parbox[b]{\hsize}{$A \cos(\omega t) + B\sin(\omega t)$} \\
     $k e^{\lambda t} \cos(\omega t)$, $k e^{\lambda t} \sin(\omega t)$ & $e^{\lambda t} (A \cos(\omega t) + B\sin(\omega t))$ \\
   \end{tabular}
 \end{center}
@@ -490,7 +496,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
   \begin{equation*}
     \lambda = -\frac{R}{2L} \pm \sqrt{\left(\frac{R}{2L}\right)^2 - \frac{1}{CL}}.  
   \end{equation*}
-  Siden $V_s'(t) = \omega V_0 \cos(\omega t)$ antar vi at den partikulærløsningen er på formen $A \cos(\omega t) + B\sin(\omega t)$. Ved innsetting får vi da de to ligningene
+  Siden $V_s'(t) = \omega V_0 \cos(\omega t)$ antar vi at partikulærløsningen er på formen $A \cos(\omega t) + B\sin(\omega t)$. Ved innsetting får vi da de to ligningene
   \begin{equation*}
     \begin{split}
       & - \omega^2 L A + \omega R B + \frac{1}{C} A = \omega V_0, \\
@@ -517,7 +523,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
 
 Til slutt nevner vi et triks. Hvis gjetningsfunksjonen vår for $y_p(t)$ også viser seg å være en homogen løsning til ligningen kan det være lurt å multiplisere gjetningsfunksjonen med $t$, slik som vi gjorde for røtter med dobbel multiplisitet for den homogene ligningen.
 
-\paragraph*{Variasjon av parametre.} Ubestemte koeffisienters metode er begrenset til ligninger der funksjonen $r(t)$ og dens deriverte er relativt like. Dette fungerer godt for eksponensialfunksjonen, trigonometriske funksjoner og polynomer, men disse utgjør en liten klasse av alle mulige funksjoner. Vi ser på et eksempel.
+\paragraph*{Variasjon av parametre.} Ubestemte koeffisienters metode er begrenset til ligninger der funksjonen $r(t)$ og dens deriverte er relativt like. Dette fungerer godt for eksponensialfunksjonen, trigonometriske funksjoner og polynomer, men disse utgjør kun en liten klasse av alle mulige funksjoner. Vi ser på et motiverende eksempel.
 
 \begin{ex} \label{ex:motiverende_eks}
   Betrakt ligningen
@@ -531,7 +537,7 @@ Variasjon av parametre er en generell metode, og kan brukes for alle $r(t)$ som 
 \begin{equation*}
   y_p(t) = v_1(t) y_1(t) + v_2(t) y_2(t),
 \end{equation*}
-hvor $u(t)$ og $v(t)$ er to ukjente funksjoner som må bestemmes. Funksjonen $y_p(t)$ må naturligvis tilfredsstille den inhomogene ligningen, og siden vi har to ukjente kan vi også anta at
+hvor $v_1(t)$ og $v_2(t)$ er to ukjente funksjoner som må bestemmes. Funksjonen $y_p(t)$ må naturligvis tilfredsstille den inhomogene ligningen, og siden vi har to ukjente kan vi også anta at
 \begin{equation*}
   v_1'(t) y_1(t) + v_2'(t) y_2(t) = 0.
 \end{equation*}
@@ -542,7 +548,7 @@ Ved innsetting i \eqref{eq:inhomogen} får vi da at
     & + v_1' y_1' + v_2' y_2'.
   \end{split}
 \end{equation*}
-De to første leddene er null, som følge av at $y_1(t)$ og $y_2(t)$ er løsninger til den homogene ligningen. Sammen med antagelsen over gir dette det lineære ligningssystemet
+De to første leddene er null som følge av at $y_1(t)$ og $y_2(t)$ er løsninger til den homogene ligningen. Sammen med antagelsen over gir dette det lineære ligningssystemet
 \begin{equation*}
   \begin{bmatrix}
     y_1 & y_2 \\
@@ -625,11 +631,11 @@ Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(
 
 
 \section*{Omformulering til systemer av forsteordens ligninger}
-Selv om vi tilsynelatende har jobbet med andreordens ligninger i dette kapitlet, skal nå se at teorien har en helt ekvivalent formulering som systemer av føsteordens ligninger. Vi innfører de nye variablene
+Selv om vi tilsynelatende har jobbet med andreordens ligninger i dette kapitlet, skal nå se at teorien har en helt ekvivalent formulering som systemer av føsteordens ligninger. Ved å innføre de nye variablene
 \begin{equation*}
-  v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = y'(t).
+  v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = y'(t)
 \end{equation*}
-Nå kan vi omformulere ligning \eqref{eq:inhomogen} til systemet
+kan vi omformulere ligning \eqref{eq:inhomogen} til systemet
 \begin{equation*}
   \begin{bmatrix}
     v_1' \\
@@ -673,7 +679,9 @@ Slike systemer har vi lært å løse tidligere ved hjelp av den karakteristiske 
     -p & -q \\
   \end{bmatrix}.
 \end{equation*}
-Nå er det ikke vanskelig å se at å finne en løsning for $[v_1, v_2]^{T}$ er helt tilsvarende det å finne $y$ slik vi gjorde ovenfor, og at metodene gir samme resultat. Dette gjelder selvfølgelig også for den inhomogene ligningen.
+Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$ er helt tilsvarende det å finne $y(t)$ slik vi gjorde ovenfor, og at metodene gir samme resultat. Dette gjelder selvfølgelig også for den inhomogene ligningen.
 
 Med denne formuleringen i bakhodet er det naturlig å tenke seg at man også kan løse høyere ordens lineære ordinære differensialligninger uten at teorien blir særlig mye vanskeligere. Det er nesten sant. Ved høyere ordens ligninger er man for eksempel nødt til å finne egenverdier til større matriser. Men det er verdt å ta med seg at løsingen av slike ligninger i stor grad dreier seg om lineær algebra.
+
+\end{multicols*}
 \end{document}
