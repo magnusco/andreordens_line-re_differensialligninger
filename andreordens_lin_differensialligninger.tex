@@ -46,10 +46,10 @@
 {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\spmx}
 {\popQED\endspmx}
 
-
 \theoremstyle{remark}
 \newtheorem*{bevis}{Bevis}
 
+\DeclareMathOperator{\diff}{d}
 
 \usetikzlibrary{patterns,decorations.pathmorphing}
 
@@ -97,11 +97,11 @@ I dette kapitlet skal vi løse andreordens lineære differensiallikninger. Førs
 \begin{ex}
 Vi har tidligere sett at ligningen
 \begin{equation*}
-    y''(t) + y(t) = 0
+    \ddot{y}(t) + y(t) = 0
 \end{equation*}
 har generell løsning $c_1 \sin(t) + c_2 \cos(t)$. Dersom vi også har gitt to initialbetingelser
 \begin{equation*}
-  y(0) = a \ \textnormal{ og } \ y'(0) = b
+  y(0) = a \ \textnormal{ og } \ \dot{y}(0) = b
 \end{equation*} kan vi bestemme konstantene $c_1$ og $c_2$, og vi får spesiell løsning
 \begin{equation*}
   y(t) = b \sin(t) + a \cos(t).
@@ -143,7 +143,7 @@ For mange situasjoner, slik som turbulens og strømning i fluider, er ligningene
   
   Ved å kombinere Newton's andre lov om kraft og akselerasjon med Hookes lov om fjærspenning får vi ligningen
   \begin{equation*}
-    m y''(t) + k y(t) = 0.
+    m \ddot{y}(t) + k y(t) = 0.
   \end{equation*}
   Dette er en andreordens differensialligning med konstante koeffisienter. Den ukjente er funksjonen $y(t)$ som beskriver loddets posisjon i forhold til likevekt avhengig av tid.
 \end{ex}
@@ -167,7 +167,7 @@ For mange situasjoner, slik som turbulens og strømning i fluider, er ligningene
   \end{center}
   Vi antar at kretsen har vært utsatt for en puls, og er interessert i hvordan spenningen $V(t)$ over kondensatoren varierer med tid. Vi kan kombinere Ohm's lov om spenningsfall over hver av komponentene med Kirchhoff's strømlov for å utlede følgene ligning for spenningen over kondensatoren.
   \begin{equation*}
-    C V''(t) + \frac{1}{R} V'(t) + \frac{1}{L} V(t) = 0.
+    C \ddot{V}(t) + \frac{1}{R} \dot{V}(t) + \frac{1}{L} V(t) = 0.
   \end{equation*}
   Dette er et eksempel på en homogen differensialligning, siden høyresiden er null.
 \end{ex}
@@ -186,7 +186,7 @@ For mange situasjoner, slik som turbulens og strømning i fluider, er ligningene
   \end{center}
   Kirchhoff's spenningslov kombinert med Ohm's lov for spenningsfall over komponentene gir oss nå at strømmen $I(t)$ gjennom kretsen vil være bestemt av
   \begin{equation*}
-    L I''(t) + R I'(t) + \frac{1}{C} I(t) = V_s'(t).
+    L \ddot{I}(t) + R \dot{I}(t) + \frac{1}{C} I(t) = \dot{V}_s(t).
   \end{equation*}
   Merk at nå er høyresiden ikke lenger null, men en funksjon av tiden. Denne ligningen er derfor inhomogen.
 \end{ex}
@@ -196,9 +196,9 @@ For mange situasjoner, slik som turbulens og strømning i fluider, er ligningene
 
 En lineær andreordens ordinær differensialligning (ODE) er en ligning som kan skrives som
 \begin{equation} \label{eq:generell_andreordens_ode}
-  y''(t) + p(t) y'(t) + q(t) y(t) = r(t),
+  \ddot{y}(t) + p(t) \dot{y}(t) + q(t) y(t) = r(t),
 \end{equation}
-hvor $p(t)$, $q(t)$ og $r(t)$ er gitte funksjoner, og $y(t)$ er ukjent. Ligningen over har $1$ som koeffisient foran $y''$, og alle andreordens lineære differensialligninger kan skrives om til denne formen ved å dele på koeffisienten foran $y''$. Vi sier da at ligningen er på standard form.
+hvor $p(t)$, $q(t)$ og $r(t)$ er gitte funksjoner, og $y(t)$ er ukjent. Ligningen over har $1$ som koeffisient foran $\ddot{y}$, og alle andreordens lineære differensialligninger kan skrives om til denne formen ved å dele på koeffisienten foran $\ddot{y}$. Vi sier da at ligningen er på standard form.
 
 Ligningen kalles ordinær når den ukjente funksjonen $y$ bare er avhengig av én variabel, i dette tilfelle $t$.
 
@@ -206,7 +206,7 @@ Dersom $r(t) = 0$ sier vi at ligningen er homogen. Vi skal også skille mellom l
 
 Med et initialverdiproblem mener vi en andreordens lineær ODE sammen med to initialbetingelser
 \begin{equation*}
-    y(t_0) = a, \qquad y'(t_0) = b,
+    y(t_0) = a, \qquad \dot{y}(t_0) = b,
 \end{equation*}
 for den ukjente funksjonen $y(t)$.
 
@@ -221,7 +221,7 @@ Heretter skal vi betrakte løsningsteknikker for andreordens ODE-er med konstant
 
 Vi skal nå se på en standard metode for å løse ligningen
 \begin{equation} \label{eq:homogen}
-    y''(t) + p y'(t) + q y(t) = 0,
+    \ddot{y}(t) + p \dot{y}(t) + q y(t) = 0,
 \end{equation}
 der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om lineærkombinasjoner av løsninger til denne ligningen, og avklarer hva vi mener med en generell løsning.
 
@@ -233,8 +233,8 @@ der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om l
   Teoremet følger av at både ligningen, og operasjonen derivasjon, er lineære. La $\alpha y_1(t) + \beta y_2(t)$ være en lineærkombinasjon av løsningene, med $\alpha, \beta \in \mathbb{C}$. Da har vi
   \begin{equation*}
     \begin{split}
-      & (\alpha y_1 + \beta y_2)'' + p (\alpha y_1 + \beta y_2)' + q (\alpha y_1 + \beta y_2) \\
-      & = \alpha (y'' + p y' + q y) + \beta (y'' + p y' + q y) = 0,
+      & \frac{\mathrm{d}^2}{\mathrm{d} t^2}(\alpha y_1 + \beta y_2) + p \frac{\mathrm{d}}{\mathrm{d} t} (\alpha y_1 + \beta y_2) + q (\alpha y_1 + \beta y_2) \\
+      & = \alpha (\ddot{y} + p \dot{y} + q y) + \beta (\ddot{y} + p \dot{y} + q y) = 0,
     \end{split}
   \end{equation*}
   hvor vi i siste steg har brukt antagelsen om at $y_1(t)$ og $y_2(t)$ er løsninger til ligningen. Dermed er $\alpha y_1(t) + \beta y_2(t)$ også en løsning.
@@ -304,7 +304,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 \begin{ex}
   Vi går tilbake til eksempel \ref{ex:fjær}. Posisjonen til loddet beskrives av
   \begin{equation*}
-    m y''(t) + ky(t) = 0.
+    m \ddot{y}(t) + ky(t) = 0.
   \end{equation*}
   Den karakteristiske ligningen er
   \begin{equation*}
@@ -318,9 +318,9 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 \end{ex}
 
 \begin{ex}
-  Vi kan legge til en friksjonskraft $F_f$ i fjærsystemet over. Dersom friksjonskraften er proporsjonal med hastigheten til loddet kan vi skrive $F_f = \gamma y'(t)$, hvor $\gamma$ er en friksjonskoeffisient. Ligningen for bevegelsen til loddet blir nå
+  Vi kan legge til en friksjonskraft $F_f$ i fjærsystemet over. Dersom friksjonskraften er proporsjonal med hastigheten til loddet kan vi skrive $F_f = \gamma \dot{y}(t)$, hvor $\gamma$ er en friksjonskoeffisient. Ligningen for bevegelsen til loddet blir nå
   \begin{equation*}
-    m y''(t) + \gamma y'(t) + ky(t) = 0.
+    m \ddot{y}(t) + \gamma \dot{y}(t) + ky(t) = 0.
   \end{equation*}
   Begynn med å anta at $\gamma$ er liten i forhold til $m$ og $k$, og prøv nå å beskrive hvordan oppførselen til systemet endrer seg med økende friksjon.
 \end{ex}
@@ -328,7 +328,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 \begin{ex}
   Ligningen
   \begin{equation*}
-    y''(t) - y(t) = 0
+    \ddot{y}(t) - y(t) = 0
   \end{equation*}
   har generell løsning
   \begin{equation*}
@@ -339,7 +339,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 \begin{ex}
   Den generelle løsningen til
   \begin{equation*}
-    y''(t) - 2 y'(t) + y(t) = 0
+    \ddot{y}(t) - 2 \dot{y}(t) + y(t) = 0
   \end{equation*}
   er
   \begin{equation*}
@@ -356,7 +356,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
   \begin{equation*}
     \lambda = - \frac{1}{2 R C} \pm \sqrt{\frac{1}{(2 R C)^2} - \frac{1}{LC}}.
   \end{equation*}
-  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$, $L = 20 $ mH og $C = 5$ $\mu$F, og at kretsen blir utsatt for en puls ved tiden $t = 0$ gitt ved $V(0) = 50$ V og $V'(0) = 0$. Da er $\lambda = -2000 \pm \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
+  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$, $L = 20 $ mH og $C = 5$ $\mu$F, og at kretsen blir utsatt for en puls ved tiden $t = 0$ gitt ved $V(0) = 50$ V og $\dot{V}(0) = 0$. Da er $\lambda = -2000 \pm \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
   \begin{equation*}
     V(t) = 50 e^{- 2000 t} \cos(\sqrt{6 \cdot 10^6} t),
   \end{equation*}
@@ -368,7 +368,7 @@ Et viktig spørsmål er om de generelle løsningene vi har funnet i eksemplene o
 \begin{thm}
   Dersom funksjonen $y(t)$ løser den homogene ligningen \eqref{eq:homogen} på et åpent intervall $I$ med initialbetingelser
   \begin{equation*}
-    y(t_0) = a, \qquad y'(t_0) = b
+    y(t_0) = a, \qquad \dot{y}(t_0) = b
   \end{equation*}
   for $t_0 \in I$, er løsningen unik.
 \end{thm}
@@ -392,7 +392,7 @@ Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse
   \begin{equation*}
     \begin{bmatrix}
       y_1(t_0) & y_2(t_0) \\
-      y_1'(t_0) & y_2'(t_0) \\
+      \dot{y}_1(t_0) & \dot{y}_2(t_0) \\
     \end{bmatrix}
     \begin{bmatrix}
       c_1 \\
@@ -401,12 +401,12 @@ Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse
     =
     \begin{bmatrix}
       Y(t_0) \\
-      Y'(t_0) \\
+      \dot{Y}(t_0) \\
     \end{bmatrix}
   \end{equation*}
-  har en unik løsning for $[c_1, c_2]^T$, siden determinanten $y_1 y_2' - y_1' y_2$ er ulik null. Dette følger igjen av at $y_1$ og $y_2$ er lineært uavhengige. Dermed kan vi finne koeffisienter $c_1$ og $c_2$ slik at 
+  har en unik løsning for $[c_1, c_2]^T$, siden determinanten $y_1 \dot{y}_2 - \dot{y}_1 y_2$ er ulik null. Dette følger igjen av at $y_1$ og $y_2$ er lineært uavhengige. Dermed kan vi finne koeffisienter $c_1$ og $c_2$ slik at 
   \begin{equation*}
-    Y(t_0) = y_h(t_0), \qquad Y'(t_0) = y_h'(t_0).
+    Y(t_0) = y_h(t_0), \qquad \dot{Y}(t_0) = \dot{y}_h(t_0).
   \end{equation*}
   På den annen side har vi ved Teorem \ref{thm:unik} at løsninger til initialverdiproblemet er unike. Dermed må $Y(t) = y_h(t)$ på hele $I$, og vi har vist at en vilkårlig løsning alltid kan skrives på formen til en generell løsning.
 \end{bevis}
@@ -415,7 +415,7 @@ Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse
 \section*{Løsning av inhomogene ligninger}
 Vi skal nå se hvordan vi kan løse ligninger på formen
 \begin{equation} \label{eq:inhomogen}
-    y''(t) + p y'(t) + q y(t) = r(t),
+    \ddot{y}(t) + p \dot{y}(t) + q y(t) = r(t),
 \end{equation}
 hvor $p$ og $q$ er to vilkårlige konstanter, og $r(t)$ er en kontinuerlig funksjon. Når vi under refererer til den tilhørende homogene ligningen, mener vi ligning \eqref{eq:inhomogen} med $r(t)$ satt til null. Løsningene til den homogene ligningen spiller nemlig en rolle i også for den inhomogene ligningen, som beskrevet i følgende definisjon.
 
@@ -434,7 +434,7 @@ Det finnes flere løsningstrategier for ligning \eqref{eq:inhomogen}. Ubestemte 
 \begin{ex}
   Betrakt ligningen
   \begin{equation*}
-    y''(t) + 3 y'(t) + 2 y(t) = 30 e^{2 t}.
+    \ddot{y}(t) + 3 \dot{y}(t) + 2 y(t) = 30 e^{2 t}.
   \end{equation*}
   Vi vet hvordan vi skal løse den homogene ligningen, og finner
   \begin{equation*}
@@ -466,7 +466,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
 \begin{ex}
   Den homogene løsningen til
   \begin{equation*}
-    y''(t) + 9 y(t) = 6t^2
+    \ddot{y}(t) + 9 y(t) = 6t^2
   \end{equation*}
   er
   \begin{equation*}
@@ -486,7 +486,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
 \begin{ex}
   Ligningen for strømmen gjennom RLC-kretsen fra eksempel \ref{ex:rlc_serie} er
   \begin{equation*}
-    L I''(t) + R I'(t) + \frac{1}{C} I(t) = V_s'(t).
+    L \ddot{I}(t) + R \dot{I}(t) + \frac{1}{C} I(t) = \dot{V}_s(t).
   \end{equation*}
   Det er naturlig å tenke seg at spennningskilden er på formen $V_s(t) = V_0 \sin(\omega t)$. Vi vet at den homogene løsningen er gitt ved å finne røttene til den karakteristiske ligningen
   \begin{equation*}
@@ -496,7 +496,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
   \begin{equation*}
     \lambda = -\frac{R}{2L} \pm \sqrt{\left(\frac{R}{2L}\right)^2 - \frac{1}{CL}}.  
   \end{equation*}
-  Siden $V_s'(t) = \omega V_0 \cos(\omega t)$ antar vi at partikulærløsningen er på formen $A \cos(\omega t) + B\sin(\omega t)$. Ved innsetting får vi da de to ligningene
+  Siden $\dot{V}_s(t) = \omega V_0 \cos(\omega t)$ antar vi at partikulærløsningen er på formen $A \cos(\omega t) + B\sin(\omega t)$. Ved innsetting får vi da de to ligningene
   \begin{equation*}
     \begin{split}
       & - \omega^2 L A + \omega R B + \frac{1}{C} A = \omega V_0, \\
@@ -528,7 +528,7 @@ Til slutt nevner vi et triks. Hvis gjetningsfunksjonen vår for $y_p(t)$ også v
 \begin{ex} \label{ex:motiverende_eks}
   Betrakt ligningen
   \begin{equation*}
-    y''(t) + y(t) = \frac{1}{\cos(t)}.
+    \ddot{y}(t) + y(t) = \frac{1}{\cos(t)}.
   \end{equation*}
   Ved å se på de deriverte til $1 / \cos(t)$ blir det fort klart at vi ikke kan løse denne ligningen med ubestemte koeffisienters metode.
 \end{ex}
@@ -539,24 +539,24 @@ Variasjon av parametre er en generell metode, og kan brukes for alle $r(t)$ som 
 \end{equation*}
 hvor $v_1(t)$ og $v_2(t)$ er to ukjente funksjoner som må bestemmes. Funksjonen $y_p(t)$ må naturligvis tilfredsstille den inhomogene ligningen, og siden vi har to ukjente kan vi også anta at
 \begin{equation*}
-  v_1'(t) y_1(t) + v_2'(t) y_2(t) = 0.
+  \dot{v}_1(t) y_1(t) + \dot{v}_2(t) y_2(t) = 0.
 \end{equation*}
 Ved innsetting i \eqref{eq:inhomogen} får vi da at
 \begin{equation*}
   \begin{split}
-    r(t) & = v_1 (y_1'' + p y_1' + q y_1) + v_2 (y_1'' + p y_1' + q y_1) \\
-    & + v_1' y_1' + v_2' y_2'.
+    r(t) & = v_1 (\ddot{y}_1 + p \dot{y}_1 + q y_1) + v_2 (\ddot{y}_1 + p \dot{y}_1 + q y_1) \\
+    & + \dot{v}_1 \dot{y}_1 + \dot{v}_2 \dot{y}_2.
   \end{split}
 \end{equation*}
 De to første leddene er null som følge av at $y_1(t)$ og $y_2(t)$ er løsninger til den homogene ligningen. Sammen med antagelsen over gir dette det lineære ligningssystemet
 \begin{equation*}
   \begin{bmatrix}
     y_1 & y_2 \\
-    y_1' & y_2' \\
+    \dot{y}_1 & \dot{y}_2 \\
   \end{bmatrix}
   \begin{bmatrix}
-    v_1' \\
-    v_2' \\
+    \dot{v}_1 \\
+    \dot{v}_2 \\
   \end{bmatrix}
   =
   \begin{bmatrix}
@@ -564,13 +564,13 @@ De to første leddene er null som følge av at $y_1(t)$ og $y_2(t)$ er løsninge
     r(t) \\
   \end{bmatrix}
 \end{equation*}
-for $v_1'(t)$ og $v_2'(t)$. For å gjøre notasjonen enklere lar vi $W$ være determinanten til matrisen på venstre side av ligningen over. Siden $y_1(t)$ og $y_2(t)$ er lineært uavhengige er $W = y_1 y_2' - y_1' y_2 \neq 0$, og systemet har løsning
+for $\dot{v}_1(t)$ og $\dot{v}_2(t)$. For å gjøre notasjonen enklere lar vi $W$ være determinanten til matrisen på venstre side av ligningen over. Siden $y_1(t)$ og $y_2(t)$ er lineært uavhengige er $W = y_1 \dot{y}_2 - \dot{y}_1 y_2 \neq 0$, og systemet har løsning
 \begin{equation*}
-  v_1'(t) = -\frac{y_2(t) r(t)}{W(t)}, \ \ v_2'(t) = \frac{y_1(t) r(t)}{W(t)}.
+  \dot{v}_1(t) = -\frac{y_2(t) r(t)}{W(t)}, \ \ \dot{v}_2(t) = \frac{y_1(t) r(t)}{W(t)}.
 \end{equation*}
 Dermed har vi at
 \begin{equation*}
-  v_1(t) = -\int \frac{y_2(t) r(t)}{W(t)} \mathop{dt}, \ \ v_2'(t) = \int \frac{y_1(t) r(t)}{W(t)} \mathop{dt},
+  v_1(t) = -\int \frac{y_2(t) r(t)}{W(t)} \mathop{dt}, \ \ v_2(t) = \int \frac{y_1(t) r(t)}{W(t)} \mathop{dt},
 \end{equation*}
 og partikulærløsningen er følgelig gitt ved
 \begin{equation*}
@@ -604,7 +604,7 @@ Merk at integrasjonskonstantene i både $v_1(t)$ og $v_2(t)$ kan settes lik null
 \begin{ex}
   Ligningen
   \begin{equation*}
-    y''(t) - 2y'(t) + y(t) = \frac{e^t}{t^2 + 1}
+    \ddot{y}(t) - 2\dot{y}(t) + y(t) = \frac{e^t}{t^2 + 1}
   \end{equation*}
   har homogen løsning
   \begin{equation*}
@@ -633,13 +633,13 @@ Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(
 \section*{Omformulering til systemer av forsteordens ligninger}
 Selv om vi tilsynelatende har jobbet med andreordens ligninger i dette kapitlet, skal nå se at teorien har en helt ekvivalent formulering som systemer av føsteordens ligninger. Ved å innføre de nye variablene
 \begin{equation*}
-  v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = y'(t)
+  v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = \dot{y}(t)
 \end{equation*}
 kan vi omformulere ligning \eqref{eq:inhomogen} til systemet
 \begin{equation*}
   \begin{bmatrix}
-    v_1' \\
-    v_2' \\
+    \dot{v}_1 \\
+    \dot{v}_2 \\
   \end{bmatrix}
   =
   \begin{bmatrix}
@@ -659,8 +659,8 @@ kan vi omformulere ligning \eqref{eq:inhomogen} til systemet
 Dersom i tillegg $r(t) = 0$ og ligningen er homogen har vi det homogene systemet
 \begin{equation*}
   \begin{bmatrix}
-    v_1' \\
-    v_2' \\
+    \dot{v}_1 \\
+    \dot{v}_2 \\
   \end{bmatrix}
   =
   \begin{bmatrix}
