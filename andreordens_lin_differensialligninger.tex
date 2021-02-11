@@ -631,7 +631,7 @@ Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(
 
 
 \section*{Omformulering til systemer av forsteordens ligninger}
-Selv om vi tilsynelatende har jobbet med andreordens ligninger i dette kapitlet, skal nå se at teorien har en helt ekvivalent formulering som systemer av føsteordens ligninger. Ved å innføre de nye variablene
+Selv om vi tilsynelatende har jobbet med andreordens differensialligninger i dette kapitlet har teorien en ekvivalent formulering som systemer av føsteordens ligninger. Ved å innføre de nye variablene
 \begin{equation*}
   v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = \dot{y}(t)
 \end{equation*}
@@ -681,7 +681,106 @@ Slike systemer har vi lært å løse tidligere ved hjelp av den karakteristiske 
 \end{equation*}
 Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$ er helt tilsvarende det å finne $y(t)$ slik vi gjorde ovenfor, og at metodene gir samme resultat. Dette gjelder selvfølgelig også for den inhomogene ligningen.
 
-Med denne formuleringen i bakhodet er det naturlig å tenke seg at man også kan løse høyere ordens lineære ordinære differensialligninger uten at teorien blir særlig mye vanskeligere. Det er nesten sant. Ved høyere ordens ligninger er man for eksempel nødt til å finne egenverdier til større matriser. Men det er verdt å ta med seg at løsingen av slike ligninger i stor grad dreier seg om lineær algebra.
+\newpage
+
+\section*{Oppgaver \footnote{Flere av oppgavene er hentet fra boken Tom Linstrøm: \textit{Kalkulus}. (2006, 3. utgave).}}
+
+\paragraph*{1.} Finn den generelle løsningen til ligningene
+\begin{multicols*}{2}
+  \begin{itemize}
+    \item[(a)] $\ddot{y} + \dot{y} - 6 y = 0$
+    \item[(b)] $\ddot{y} + 5\dot{y} + 4y = 0$
+    \item[(c)] $\ddot{y} + 6\dot{y} + 9y = 0$
+    \item[(d)] $\ddot{y} - 2\dot{y} + 5y = 0$
+    \item[(e)] $\ddot{y} + 2\dot{y} + 7y = 0$
+    \item[(f)] $\ddot{y} - \dot{y} + \frac{y}{4} = 0$  
+  \end{itemize}
+\end{multicols*}
+
+\paragraph*{2.} Finn løsningen til initialverdiproblemene
+\begin{itemize}
+  \item[(a)] $\ddot{y} - 5\dot{y} + 4y = 0, \qquad y(0) = 2,\ \ \dot{y}(0) = -4$
+  \item[(b)] $\ddot{y} - \dot{y} + \frac{y}{2} = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 7$
+  \item[(c)] $\ddot{y} - 4\dot{y} - y = 0, \qquad y(1) = 2,\ \ \dot{y}(1) = -1$
+  \item[(d)] $\ddot{y} + 4\dot{y} + 5y = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 1$
+  \item[(e)] $\ddot{y} - 6\dot{y} + 9y = 0, \qquad y(1) = -e^3,\ \ \dot{y}(1) = -6e^3$
+\end{itemize}
+
+\paragraph*{3.}
+\begin{itemize}
+  \item[(a)] Finn den generelle løsningen til ligningen
+  \begin{equation*}
+    \ddot{y} - \dot{y} - 2y = 0.
+  \end{equation*}
+  \item[(b)] Finn en partikulærløsning til $\ddot{y} - \dot{y} - 2y = e^t$.
+  \item[(c)] Finn en løsning til $\ddot{y} - \dot{y} - 2y = e^t$ slik at $y(0) = \dot{y}(0) = 2$.
+\end{itemize}
+
+\paragraph*{4.} Finn den generelle løsningen til ligningene
+\begin{itemize}
+  \item[(a)] $\ddot{y} + 3\dot{y} + 2y = 30e^{2t}$
+  \item[(b)] $\ddot{y} - 2\dot{y} - 8y = 6 - 8t$
+  \item[(c)] $\ddot{y} + 2\dot{y} + 5y = \cos(t)$
+  \item[(d)] $\ddot{y} - 8\dot{y} + 6y = t^2$
+  \item[(e)] $\ddot{y} + 4\dot{y} + 4y = e^{-2t} \sin(2t)$
+  \item[(f)] $\ddot{y} + 2\dot{y} + y = 2t \sin(t)$ 
+\end{itemize}
+
+\paragraph*{5.}
+\begin{itemize}
+  \item[(a)] Finn den generelle løsningen til
+  \begin{equation*}
+    \ddot{y} + y = 0.
+  \end{equation*}
+  \item[(b)] Finn en partikulærløsning til ligningen $\ddot{y} + y = \tan(t)$.
+  \item[(c)] Finn en løsning til $\ddot{y} + y = \tan(t)$ slik at **initialverdier**.
+\end{itemize}
+
+\paragraph*{6.} Finn den generelle løsningen til ligningene
+\begin{itemize}
+  \item[(a)] $\ddot{y} - 4\dot{y} + 4y = t^2 e^t$
+  \item[(a)] $\ddot{y} - 2\dot{y} + y = e^t \sin(t)$
+\end{itemize}
+
+\paragraph*{7.} 
+
+
+
+
+\section*{Løsningsforslag}
+
+\paragraph*{1.} Ved å regne ut røttene til det karakteristike polynomet til ligningene finner man
+\begin{itemize}
+  \item[(a)] $\ddot{y} + \dot{y} - 6 y = 0$
+  \item[(b)] $\ddot{y} + 5\dot{y} + 4y = 0$
+  \item[(c)] $\ddot{y} + 6\dot{y} + 9y = 0$
+  \item[(d)] $\ddot{y} - 2\dot{y} + 5y = 0$
+  \item[(e)] $\ddot{y} + 2\dot{y} + 7y = 0$
+  \item[(f)] $\ddot{y} - \dot{y} + \frac{y}{4} = 0$  
+\end{itemize}
+
+\paragraph*{2.}
+\begin{itemize}
+  \item[(a)] $\ddot{y} - 5\dot{y} + 4y = 0, \qquad y(0) = 2,\ \ \dot{y}(0) = -4$
+  \item[(b)] $\ddot{y} - \dot{y} + \frac{y}{2} = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 7$
+  \item[(c)] $\ddot{y} - 4\dot{y} - y = 0, \qquad y(1) = 2,\ \ \dot{y}(1) = -1$
+  \item[(d)] $\ddot{y} + 4\dot{y} + 5y = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 1$
+  \item[(e)] $\ddot{y} - 6\dot{y} + 9y = 0, \qquad y(1) = -e^3,\ \ \dot{y}(1) = -6e^3$
+\end{itemize}
+
+\paragraph*{4.} Finn den generelle løsningen til ligningene
+\begin{itemize}
+  \item[(a)] $\ddot{y} + 3\dot{y} + 2y = 30e^{2t}$
+  \item[(b)] $\ddot{y} - 2\dot{y} - 8y = 6 - 8t$
+  \item[(c)] $\ddot{y} + 2\dot{y} + 5y = \cos(t)$
+  \item[(d)] $\ddot{y} - 8\dot{y} + 6y = t^2$
+  \item[(e)] $\ddot{y} + 4\dot{y} + 4y = e^{-2t} \sin(2t)$
+  \item[(f)] $\ddot{y} + 2\dot{y} + y = 2t \sin(t)$ 
+\end{itemize}
+
 
 \end{multicols*}
 \end{document}
+
+
+Med denne formuleringen i bakhodet er det naturlig å tenke seg at man også kan løse høyere ordens lineære ordinære differensialligninger uten at teorien blir særlig mye vanskeligere. Det er nesten sant. Ved høyere ordens ligninger er man for eksempel nødt til å finne egenverdier til større matriser. Men det er verdt å ta med seg at løsingen av slike ligninger i stor grad dreier seg om lineær algebra.
