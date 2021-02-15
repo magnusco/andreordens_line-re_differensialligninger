@@ -28,10 +28,14 @@
 \theoremstyle{definition}
 \newtheorem{exx}[thm]{\color{blue}Eksempel}
 \newtheorem{defnx}[thm]{Definisjon}
-\newtheorem{oppg}{Oppgave}
+\newtheorem{oppg}{}
 \newtheorem{merkx}{Merk}
 \newtheorem{kommentarx}{Kommentar}
 \newtheorem{spmx}{Spørsmål}
+\newtheorem{innercustomoppg}{}
+\newenvironment{customoppg}[1]
+    {\renewcommand\theinnercustomoppg{#1}\innercustomoppg}
+    {\endinnercustomoppg}
 
 \newenvironment{defn}
 {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\defnx}
@@ -488,7 +492,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
   \begin{equation*}
     L \ddot{I}(t) + R \dot{I}(t) + \frac{1}{C} I(t) = \dot{V}_s(t).
   \end{equation*}
-  Det er naturlig å tenke seg at spennningskilden er på formen $V_s(t) = V_0 \sin(\omega t)$. Vi vet at den homogene løsningen er gitt ved å finne røttene til den karakteristiske ligningen
+  Det er naturlig å tenke seg at spenningskilden er på formen $V_s(t) = V_0 \sin(\omega t)$. Vi vet at den homogene løsningen er gitt ved å finne røttene til den karakteristiske ligningen
   \begin{equation*}
     \lambda^2 + \frac{R}{L} \lambda + \frac{1}{CL} = 0,
   \end{equation*}
@@ -623,15 +627,15 @@ Merk at integrasjonskonstantene i både $v_1(t)$ og $v_2(t)$ kan settes lik null
   \end{equation*}
 \end{ex}
 
-Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(t)$ alle mulige løsniger. Vi formulerer dette som et teorem, men inkluderer ikke beviset.
+Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(t)$ alle mulige løsninger. Vi formulerer dette som et teorem, men inkluderer ikke beviset.
 
 \begin{thm} \label{thm:alle_mulige_losn_inhomogen}
   Alle mulige løsninger til \eqref{eq:inhomogen} kan skrives ved å tilordne bestemte verdier til konstantene $c_1$ og $c_2$ i den generelle løsningen $y(t) = y_h(t) + y_p(t)$ til ligningen.
 \end{thm}
 
 
-\section*{Omformulering til systemer av forsteordens ligninger}
-Selv om vi tilsynelatende har jobbet med andreordens differensialligninger i dette kapitlet har teorien en ekvivalent formulering som systemer av føsteordens ligninger. Ved å innføre de nye variablene
+\section*{Omformulering til systemer av førsteordens ligninger}
+Selv om vi tilsynelatende har jobbet med andreordens differensialligninger i dette kapitlet har teorien en ekvivalent formulering som systemer av førsteordens ligninger. Ved å innføre de nye variablene
 \begin{equation*}
   v_1(t) = y(t)\ \ \textnormal{ og }\ \ v_2(t) = \dot{y}(t)
 \end{equation*}
@@ -683,104 +687,239 @@ Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$
 
 \newpage
 
-\section*{Oppgaver \footnote{Flere av oppgavene er hentet fra boken Tom Linstrøm: \textit{Kalkulus}. (2006, 3. utgave).}}
+\section*{Oppgaver \footnote{Flere av oppgavene er hentet fra Tom Lindstrøm: \textit{Kalkulus}. (2006, 3. utgave).}}
 
-\paragraph*{1.} Finn den generelle løsningen til ligningene
-\begin{multicols*}{2}
+\begin{oppg}
+  Finn den generelle løsningen til ligningene
+  \begin{multicols*}{2}
+    \begin{itemize}
+      \item[(a)] $\ddot{y} + \dot{y} - 6 y = 0$
+      \item[(b)] $\ddot{y} + 5\dot{y} + 4y = 0$
+      \item[(c)] $\ddot{y} + 6\dot{y} + 9y = 0$
+      \item[(d)] $\ddot{y} - 2\dot{y} + 5y = 0$
+      \item[(e)] $\ddot{y} + 2\dot{y} + 7y = 0$
+      \item[(f)] $4\ddot{y} - 4\dot{y} + y = 0$  
+    \end{itemize}
+  \end{multicols*}
+\end{oppg}
+
+\begin{oppg}
+  Finn løsningen til initialverdiproblemene
   \begin{itemize}
-    \item[(a)] $\ddot{y} + \dot{y} - 6 y = 0$
-    \item[(b)] $\ddot{y} + 5\dot{y} + 4y = 0$
-    \item[(c)] $\ddot{y} + 6\dot{y} + 9y = 0$
-    \item[(d)] $\ddot{y} - 2\dot{y} + 5y = 0$
-    \item[(e)] $\ddot{y} + 2\dot{y} + 7y = 0$
-    \item[(f)] $\ddot{y} - \dot{y} + \frac{y}{4} = 0$  
+    \item[(a)] $\ddot{y} - 5\dot{y} + 4y = 0, \qquad y(0) = 2,\ \ \dot{y}(0) = -4$
+    \item[(b)] $\ddot{y} - \dot{y} + \frac{y}{2} = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 7$
+    \item[(c)] $\ddot{y} - 4\dot{y} - y = 0, \qquad y(1) = 2,\ \ \dot{y}(1) = -1$
+    \item[(d)] $\ddot{y} + 4\dot{y} + 5y = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 1$
+    \item[(e)] $\ddot{y} - 6\dot{y} + 9y = 0, \qquad y(1) = -e^3,\ \ \dot{y}(1) = -6e^3$
   \end{itemize}
-\end{multicols*}
+\end{oppg}
 
-\paragraph*{2.} Finn løsningen til initialverdiproblemene
-\begin{itemize}
-  \item[(a)] $\ddot{y} - 5\dot{y} + 4y = 0, \qquad y(0) = 2,\ \ \dot{y}(0) = -4$
-  \item[(b)] $\ddot{y} - \dot{y} + \frac{y}{2} = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 7$
-  \item[(c)] $\ddot{y} - 4\dot{y} - y = 0, \qquad y(1) = 2,\ \ \dot{y}(1) = -1$
-  \item[(d)] $\ddot{y} + 4\dot{y} + 5y = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 1$
-  \item[(e)] $\ddot{y} - 6\dot{y} + 9y = 0, \qquad y(1) = -e^3,\ \ \dot{y}(1) = -6e^3$
-\end{itemize}
-
-\paragraph*{3.}
-\begin{itemize}
-  \item[(a)] Finn den generelle løsningen til ligningen
+\begin{oppg}  
+  Betrakt ligningen
   \begin{equation*}
-    \ddot{y} - \dot{y} - 2y = 0.
+    \ddot{y} - \dot{y} - 2y = e^t
   \end{equation*}
-  \item[(b)] Finn en partikulærløsning til $\ddot{y} - \dot{y} - 2y = e^t$.
-  \item[(c)] Finn en løsning til $\ddot{y} - \dot{y} - 2y = e^t$ slik at $y(0) = \dot{y}(0) = 2$.
-\end{itemize}
+  \begin{itemize}
+    \item[(a)] Finn den generelle løsningen til den homogene ligningen.
+    \item[(b)] Finn en partikulærløsning til ligningen.
+    \item[(c)] Finn den spesielle løsningen til den inhomogene ligningen med initialbetingelser $y(0) = \dot{y}(0) = 2$.
+  \end{itemize}
+\end{oppg}
 
-\paragraph*{4.} Finn den generelle løsningen til ligningene
-\begin{itemize}
-  \item[(a)] $\ddot{y} + 3\dot{y} + 2y = 30e^{2t}$
-  \item[(b)] $\ddot{y} - 2\dot{y} - 8y = 6 - 8t$
-  \item[(c)] $\ddot{y} + 2\dot{y} + 5y = \cos(t)$
-  \item[(d)] $\ddot{y} - 8\dot{y} + 6y = t^2$
-  \item[(e)] $\ddot{y} + 4\dot{y} + 4y = e^{-2t} \sin(2t)$
-  \item[(f)] $\ddot{y} + 2\dot{y} + y = 2t \sin(t)$ 
-\end{itemize}
+\begin{oppg}  
+  Finn den generelle løsningen til ligningene
+  \begin{itemize}
+    \item[(a)] $\ddot{y} + 3\dot{y} + 2y = 30e^{2t}$
+    \item[(b)] $\ddot{y} - 2\dot{y} - 8y = 6 - 8t$
+    \item[(c)] $\ddot{y} + 2\dot{y} + 5y = \cos(t)$
+    \item[(d)] $\ddot{y} - 8\dot{y} + 6y = t^2$
+    \item[(e)] $\ddot{y} + 4\dot{y} + 4y = e^{-2t} \sin(2t)$
+    \item[(f)] $\ddot{y} + 4\dot{y} + 5y = 25t^2 + 13\sin(2t)$ 
+  \end{itemize}
+\end{oppg}
 
-\paragraph*{5.}
-\begin{itemize}
-  \item[(a)] Finn den generelle løsningen til
+\begin{oppg}  
+  Betrakt ligningen
   \begin{equation*}
-    \ddot{y} + y = 0.
+    \ddot{y} - 4\dot{y} + 4y = t^2 e^t
   \end{equation*}
-  \item[(b)] Finn en partikulærløsning til ligningen $\ddot{y} + y = \tan(t)$.
-  \item[(c)] Finn en løsning til $\ddot{y} + y = \tan(t)$ slik at **initialverdier**.
-\end{itemize}
+  \begin{itemize}
+    \item[(a)] Finn den generelle løsningen til den homogene ligningen.
+    \item[(b)] Finn en partikulærløsning til ligningen.
+    \item[(c)] Finn den spesielle løsningen til den inhomogene ligningen med initialbetingelser $y(0) = 0$ og $y'(0) = 2$.
+  \end{itemize}
+\end{oppg}
 
-\paragraph*{6.} Finn den generelle løsningen til ligningene
-\begin{itemize}
-  \item[(a)] $\ddot{y} - 4\dot{y} + 4y = t^2 e^t$
-  \item[(a)] $\ddot{y} - 2\dot{y} + y = e^t \sin(t)$
-\end{itemize}
+\begin{oppg}
+  Er løsningene til følgende ligninger et vektorrom? Dersom svaret er ja, finn en basis for løsningsrommet.
+  \begin{itemize}
+    \item[(a)] $4\ddot{y} - 20\dot{y} + 25y = 0$
+    \item[(b)] $\ddot{y} - 2y + 10 = 0$
+    \item[(a)] $\ddot{y} + 9y = \cos(t) + \frac{1}{3} \cos(3t)$
+    \item[(a)] $100\ddot{y} + 20\dot{y} = 99y$
+    \item[(a)] $t \ddot{y} + y = 1$ 
+  \end{itemize}
+\end{oppg}
 
-\paragraph*{7.} 
+\begin{oppg}  
+  Betrakt ligningen
+  \begin{equation*}
+    \ddot{y} - 12\dot{y} + 35y = 0.
+  \end{equation*}
+  \begin{itemize}
+    \item[(a)] Finn den generelle løsningen til ligningen.
+    \item[(b)] Skriv ligningen som et system av førsteordens differensialligninger på formen $\dot{\boldsymbol{y}}= A\boldsymbol{y}$. Finn egenverdiene til matrisen $A$, og bruk dette til å løse ligningen for $\boldsymbol{y}$.
+  \end{itemize}
+\end{oppg}
+
+\begin{oppg}  
+  Betrakt ligningen
+  \begin{equation*}
+    \ddot{y} + 2y = t^2.
+  \end{equation*}
+  \begin{itemize}
+    \item[(a)] Finn den generelle løsningen til ligningen.
+    \item[(b)] Skriv ligningen som et system av førsteordens differensialligninger på formen $\dot{\boldsymbol{y}}= A\boldsymbol{y} + \boldsymbol{\mathrm{f}}$. Finn egenverdiene til matrisen $A$, og bruk dette til å løse ligningen for $\boldsymbol{y}$.
+  \end{itemize}
+\end{oppg}
+
+\begin{oppg}  
+  Anta at to funksjoner $y_1(t)$ og $y_2(t)$ tilfredsstiller følgende system av differensialligninger
+  \begin{equation*}
+    \begin{split}
+      & \dot{y}_1 = - y_1 - y_2, \qquad y_1(0) = 0\\
+      & \dot{y}_2 = 5y_1 - 3y_2, \qquad y_2(0) = 2\\
+    \end{split}
+  \end{equation*}
+  \begin{itemize}
+    \item[(a)] Vis at $y_1(t)$ tilfredsstiller ligningen
+    \begin{equation*}
+      \ddot{y}_1 + 4\dot{y}_1 + 8y_1 = 0, \qquad y_1(0) = 0,\ \ \dot{y}_1(0) = -2.
+    \end{equation*}
+    \item[(b)] Finn $y_1(t)$.
+    \item[(c)] Finn $y_2(t)$.
+  \end{itemize}
+\end{oppg}
+
+\begin{oppg}  
+  Betrakt følgende krets.
+  \begin{center}
+    \begin{circuitikz}
+      \draw
+      (0,0)
+      to[american voltage source, voltage dir=old, l={$V_s(t)$}, i^={$I(t)$}] (0,3)
+      to[european resistor, l_ = $R$] (3,3)
+      to[capacitor, l = $C$] (3,0)
+      to[short] (0, 0);
+    \end{circuitikz}
+  \end{center}
+  \begin{itemize}
+    \item[(a)] Utled en ligning for strømmen i kretsen som funksjon av tid.
+    \item[(b)] Anta at $C=0.05\ \mathrm{F}$, $R=5\ \mathrm{\Omega}$ og $V_s=12\ \mathrm{V}$. Finn en generell løsning for strømmen i kretsen.
+  \end{itemize}
+\end{oppg}
+
+\begin{oppg}  
+  Betrakt følgende krets.
+  \begin{center}
+    \begin{circuitikz}
+      \draw
+      (0,0)
+      to[american voltage source, voltage dir=old, l={$V_s(t)$}, i^={$I(t)$}] (0,3)
+      to[european resistor, l_ = $R$] (3,3)
+      to[short] (3,0)
+      to[cute inductor, l_ = $L$] (0, 0);
+    \end{circuitikz}
+  \end{center}
+  \begin{itemize}
+    \item[(a)] Utled en ligning for strømmen i kretsen som funksjon av tid.
+    \item[(a)] Anta at $V_s(t) = V_0 \sin(\omega t)$. Finn en generell løsning for strømmen for vilkårlige konstanter $R$, $L$, $V_0$ og $\omega$. 
+  \end{itemize}
+\end{oppg}
+
+\begin{oppg}  
+  La $N_1(t)$ og $N_2(t)$ være antallet individer av to dyrearter som en funksjon av tid. Vi introduserer to skalerte funksjoner
+  \begin{equation*}
+    \begin{split}
+      & x(t) = N_1(t) - 300, \\
+      & y(t) = N_2(t) - 10\ 000. \\
+    \end{split}
+  \end{equation*}
+  Samspillet mellom de to artene kan modelleres av følgende system differensialligninger.
+    \begin{equation*}
+      \begin{split}
+        & \dot{x}(t) = by(t), \\
+        & \dot{y}(t) = -cx(t). \\
+      \end{split}
+    \end{equation*}
+  \begin{itemize}
+    \item[(a)] Hvilken art er rovdyr og hvilken er byttedyr?
+    \item[(b)] Vis at $\ddot{x}(t) = -bc x(t)$.
+    \item[(c)] Anta at $x(0) = x_0$ og $y(0) = y_0$. Finn $x(t)$ og $y(t)$.
+    \item[(d)] Anta $b=0.05$, $c=84$ og $N_1(0) = 300$, $N_2(0) = 1400$. Plot antallet individer i de to populasjonene som en funksjon av tid.
+  \end{itemize}
+\end{oppg}
 
 
 
-
+\newpage
 \section*{Løsningsforslag}
 
-\paragraph*{1.} Ved å regne ut røttene til det karakteristike polynomet til ligningene finner man
-\begin{itemize}
-  \item[(a)] $\ddot{y} + \dot{y} - 6 y = 0$
-  \item[(b)] $\ddot{y} + 5\dot{y} + 4y = 0$
-  \item[(c)] $\ddot{y} + 6\dot{y} + 9y = 0$
-  \item[(d)] $\ddot{y} - 2\dot{y} + 5y = 0$
-  \item[(e)] $\ddot{y} + 2\dot{y} + 7y = 0$
-  \item[(f)] $\ddot{y} - \dot{y} + \frac{y}{4} = 0$  
-\end{itemize}
+\begin{customoppg}{1}
+  Ved å regne ut røttene til det karakteristiske polynomet til ligningene finner man
+  \begin{itemize}
+    \item[(a)] $y(t) = c_1 e^{2t} + c_2 e^{-3t}$
+    \item[(b)] $y(t) = c_1 e^{-4t} + c_2 e^{-t}$
+    \item[(c)] $y(t) = c_1 e^{-3t} + c_2 te^{-3t}$
+    \item[(d)] $y(t) = e^t (c_1 \cos(2t) + c_2 \sin(2t))$
+    \item[(e)] $y(t) = e^{-t} (c_1 \cos(\sqrt{6}t) + c_2 \sin(\sqrt{6}t))$
+    \item[(f)] $y(t) = c_1 e^{\frac{1}{2}t} + c_2 t e^{\frac{1}{2}t}$
+  \end{itemize}
+\end{customoppg}
 
-\paragraph*{2.}
-\begin{itemize}
-  \item[(a)] $\ddot{y} - 5\dot{y} + 4y = 0, \qquad y(0) = 2,\ \ \dot{y}(0) = -4$
-  \item[(b)] $\ddot{y} - \dot{y} + \frac{y}{2} = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 7$
-  \item[(c)] $\ddot{y} - 4\dot{y} - y = 0, \qquad y(1) = 2,\ \ \dot{y}(1) = -1$
-  \item[(d)] $\ddot{y} + 4\dot{y} + 5y = 0, \qquad y(0) = 0,\ \ \dot{y}(0) = 1$
-  \item[(e)] $\ddot{y} - 6\dot{y} + 9y = 0, \qquad y(1) = -e^3,\ \ \dot{y}(1) = -6e^3$
-\end{itemize}
+\begin{customoppg}{2}
+  \leavevmode
+  \begin{itemize}
+    \item[(a)] $y(t) = -2e^{4t} + 4e^t$
+    \item[(b)] $y(t) = 14e^{\frac{t}{2}} \sin\big(\frac{t}{2}\big)$
+    \item[(c)] $y(t) = \left( 1 - \frac{\sqrt{5}}{2} \right)e^{(2 + \sqrt{5})(t - 1)} + \left( 1 + \frac{\sqrt{5}}{2} \right)e^{(2 - \sqrt{5})(t - 1)}$
+    \item[(d)] $y(t) = e^{-2t}\sin(t)$
+    \item[(e)] $y(t) = 2e^{3t} - 3te^{3t}$
+  \end{itemize}
+\end{customoppg}  
 
-\paragraph*{4.} Finn den generelle løsningen til ligningene
-\begin{itemize}
-  \item[(a)] $\ddot{y} + 3\dot{y} + 2y = 30e^{2t}$
-  \item[(b)] $\ddot{y} - 2\dot{y} - 8y = 6 - 8t$
-  \item[(c)] $\ddot{y} + 2\dot{y} + 5y = \cos(t)$
-  \item[(d)] $\ddot{y} - 8\dot{y} + 6y = t^2$
-  \item[(e)] $\ddot{y} + 4\dot{y} + 4y = e^{-2t} \sin(2t)$
-  \item[(f)] $\ddot{y} + 2\dot{y} + y = 2t \sin(t)$ 
-\end{itemize}
+\begin{customoppg}{3}
+  \leavevmode
+  \begin{itemize}
+    \item[(a)] $y_h(t) = c_1e^{-t} + c_2e^{2t}$.
+    \item[(b)] Ved å anta at $y_p(t) = Ae^t$ finner vi at
+    \begin{equation*}
+      (A - A - 2A) e^t = e^t.
+    \end{equation*}
+    Dermed er $y_p(t) = - \frac{1}{2} e^t$.
+    \item[(c)] Den spesielle løsningen er gtt ved
+    \begin{equation*}
+      \frac{5}{6} e^{-t} + \frac{5}{3} e^{2t} - \frac{1}{2} e^t.
+    \end{equation*} 
+  \end{itemize}
+\end{customoppg}
+
+\begin{customoppg}{5}
+  \leavevmode
+  \begin{itemize}
+    \item[(a)] $y_h(t) = c_1e^{2t} + c_2te^{2t}$.
+    \item[(b)] Ved variasjon av parametre finner man at
+    \begin{equation*}
+      y_h(t) = t^2 e^t + 4te^t + 6e^t.
+    \end{equation*}
+    \item[(c)] $y(t) = t^2 e^t + 4te^t + 4te^{2t} - 6 e^{2t} + 6e^t$.
+  \end{itemize}
+  
+\end{customoppg}
+
 
 
 \end{multicols*}
 \end{document}
-
 
 Med denne formuleringen i bakhodet er det naturlig å tenke seg at man også kan løse høyere ordens lineære ordinære differensialligninger uten at teorien blir særlig mye vanskeligere. Det er nesten sant. Ved høyere ordens ligninger er man for eksempel nødt til å finne egenverdier til større matriser. Men det er verdt å ta med seg at løsingen av slike ligninger i stor grad dreier seg om lineær algebra.
