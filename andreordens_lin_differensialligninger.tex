@@ -809,13 +809,15 @@ Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$
       (0,0)
       to[american voltage source, voltage dir=old, l={$V_s(t)$}, i^={$I(t)$}] (0,3)
       to[european resistor, l_ = $R$] (3,3)
-      to[capacitor, l = $C$] (3,0)
-      to[short] (0, 0);
+      to[capacitor, l = $C_1$] (3,1.5)
+      to[capacitor, l = $C_2$] (3,0)
+      to[cute inductor, l_ = $L$] (0, 0);
     \end{circuitikz}
   \end{center}
   \begin{itemize}
     \item[(a)] Utled en ligning for strømmen i kretsen som funksjon av tid.
-    \item[(b)] Anta at $C=0.05\ \mathrm{F}$, $R=5\ \mathrm{\Omega}$ og $V_s=12\ \mathrm{V}$. Finn en generell løsning for strømmen i kretsen.
+    \item[(b)] Anta at $C_1=0.05\ \mathrm{F}$, $C_2=0.02\ \mathrm{F}$, $R=11\ \mathrm{\Omega}$, $L=0.1\ \mathrm{H}$ og $V_s(t)=100 \sin(400 t)\ \mathrm{V}$. Finn en generell løsning til ligningen.
+    \item[(c)] Anta nå at $I(0) = \dot{I}(0) = 0$. Finn den spesielle løsningen til ligningen.
   \end{itemize}
 \end{oppg}
 
@@ -827,13 +829,18 @@ Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$
       (0,0)
       to[american voltage source, voltage dir=old, l={$V_s(t)$}, i^={$I(t)$}] (0,3)
       to[european resistor, l_ = $R$] (3,3)
-      to[short] (3,0)
+      to[capacitor, l = $C_1$] (3,0)
       to[cute inductor, l_ = $L$] (0, 0);
+      \draw
+      (3,3)
+      to[short] (5,3)
+      to[capacitor, l = $C_2$] (5,0)
+      to[short] (3,0);
     \end{circuitikz}
   \end{center}
   \begin{itemize}
     \item[(a)] Utled en ligning for strømmen i kretsen som funksjon av tid.
-    \item[(a)] Anta at $V_s(t) = V_0 \sin(\omega t)$. Finn en generell løsning for strømmen for vilkårlige konstanter $R$, $L$, $V_0$ og $\omega$. 
+    \item[(a)] Anta at $V_s(t) = V_0 \sin(\omega t)$. Finn en generell løsning for strømmen for vilkårlige konstanter $R$, $L$, $C_1$, $C_2$, $V_0$ og $\omega$. 
   \end{itemize}
 \end{oppg}
 
