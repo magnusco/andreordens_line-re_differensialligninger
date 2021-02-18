@@ -29,13 +29,16 @@
 \newtheorem{exx}[thm]{\color{blue}Eksempel}
 \newtheorem{defnx}[thm]{Definisjon}
 \newtheorem{oppg}{}
-\newtheorem{merkx}{Merk}
 \newtheorem{kommentarx}{Kommentar}
 \newtheorem{spmx}{Spørsmål}
 \newtheorem{innercustomoppg}{}
 \newenvironment{customoppg}[1]
-    {\renewcommand\theinnercustomoppg{#1}\innercustomoppg}
-    {\endinnercustomoppg}
+{\renewcommand\theinnercustomoppg{#1}\innercustomoppg}
+{\endinnercustomoppg}
+
+\theoremstyle{remark}
+\newtheorem{merkx}[thm]{Merknad}
+\newtheorem*{bevis}{Bevis}
 
 \newenvironment{defn}
 {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\defnx}
@@ -49,9 +52,6 @@
 \newenvironment{spm}
 {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\spmx}
 {\popQED\endspmx}
-
-\theoremstyle{remark}
-\newtheorem*{bevis}{Bevis}
 
 \DeclareMathOperator{\diff}{d}
 
@@ -234,14 +234,7 @@ der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om l
 \end{thm}
 
 \begin{bevis}
-  Teoremet følger av at både ligningen, og operasjonen derivasjon, er lineære. La $\alpha y_1(t) + \beta y_2(t)$ være en lineærkombinasjon av løsningene, med $\alpha, \beta \in \mathbb{C}$. Da har vi
-  \begin{equation*}
-    \begin{split}
-      & \frac{\mathrm{d}^2}{\mathrm{d} t^2}(\alpha y_1 + \beta y_2) + p \frac{\mathrm{d}}{\mathrm{d} t} (\alpha y_1 + \beta y_2) + q (\alpha y_1 + \beta y_2) \\
-      & = \alpha (\ddot{y} + p \dot{y} + q y) + \beta (\ddot{y} + p \dot{y} + q y) = 0,
-    \end{split}
-  \end{equation*}
-  hvor vi i siste steg har brukt antagelsen om at $y_1(t)$ og $y_2(t)$ er løsninger til ligningen. Dermed er $\alpha y_1(t) + \beta y_2(t)$ også en løsning.
+  Se oppgave \ref{oppg:bevis}.
 \end{bevis}
 
 \begin{defn}
@@ -369,7 +362,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
 
 Et viktig spørsmål er om de generelle løsningene vi har funnet i eksemplene ovenfor er unike, eller om det også finnes andre løsninger. Vi har følgende teorem.
 
-\begin{thm}
+\begin{thm} \label{thm:unik}
   Dersom funksjonen $y(t)$ løser den homogene ligningen \eqref{eq:homogen} på et åpent intervall $I$ med initialbetingelser
   \begin{equation*}
     y(t_0) = a, \qquad \dot{y}(t_0) = b
@@ -379,13 +372,17 @@ Et viktig spørsmål er om de generelle løsningene vi har funnet i eksemplene o
 
 Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse av en løsning på formen $c_1 y_1(t) + c_2 y_2(t)$ som en generell løsning til ligning \eqref{eq:homogen} er godt begrunnet.
 
-\begin{thm} \label{thm:unik}
-  Alle mulige løsninger til den homogene ligningen \eqref{eq:homogen} på et åpent intervall $I$ er på formen
+\begin{thm} \label{thm:alle_mulige_losn_homogen}
+  Alle mulige løsninger til den homogene ligning \eqref{eq:homogen} på et åpent intervall $I$ er på formen
   \begin{equation*}
     c_1 y_1(t) + c_2 y_2(t),
   \end{equation*}
   hvor $y_1(t)$ og $y_2(t)$ er en basis for løsningsrommet, og $c_1$ og $c_2$ er to konstanter.
 \end{thm}
+
+\begin{merk}
+  Teorem \ref{thm:alle_mulige_losn_homogen} sier at lineærkombinasjonen av basisfunksjonene $y_1$ og $y_2$ utgjør hele løsningsrommet til ligning \eqref{eq:homogen}. Løsningsrommet er et vektorrom.
+\end{merk}
 
 \begin{bevis}
   La $Y(x)$ være en vilkårlig løsning til \eqref{eq:homogen} på intervallet $I$. Med løsningsteknikken over kan vi alltid finne en generell løsning gitt ved
@@ -633,6 +630,13 @@ Også for inhomogene ligninger beskriver den generelle løsningen $y_h(t) + y_p(
   Alle mulige løsninger til \eqref{eq:inhomogen} kan skrives ved å tilordne bestemte verdier til konstantene $c_1$ og $c_2$ i den generelle løsningen $y(t) = y_h(t) + y_p(t)$ til ligningen.
 \end{thm}
 
+\begin{merk}
+  Teorem \ref{thm:alle_mulige_losn_inhomogen} sier at lineærkombinasjonen 
+  \begin{equation*}
+    \underbrace{c_1y_1(t) + c_2y_2(t)}_{y_h(t)} + y_p(t)  
+  \end{equation*}
+  utgjør hele løsningsrommet til ligning \eqref{eq:inhomogen}. Men løsningsrommet er nå ikke nødvendigvis et vektorrom.
+\end{merk}
 
 \section*{Omformulering til systemer av førsteordens ligninger}
 Selv om vi tilsynelatende har jobbet med andreordens differensialligninger i dette kapitlet har teorien en ekvivalent formulering som systemer av førsteordens ligninger. Ved å innføre de nye variablene
@@ -867,6 +871,28 @@ Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$
   \end{itemize}
 \end{oppg}
 
+\begin{oppg} \label{oppg:bevis}
+  Under følger et forslag til et bevis for Teorem \ref{thm:lin_komb_losning}. Men beviset inneholder en logisk feil. Finn feilen, og foreslå tilstrekkelige endringer slik at beviset er gyldig.
+\end{oppg}
+
+\begin{bevis}
+  Anta at lineærkombinasjonen $\alpha y_1(t) + \beta y_2(t)$, med $\alpha, \beta \in \mathbb{C}$, løser den homogene ligningen \eqref{eq:homogen}. Da har vi at 
+  \begin{equation*}
+    0 = \frac{\mathrm{d}^2}{\mathrm{d} t^2}(\alpha y_1 + \beta y_2) + p \frac{\mathrm{d}}{\mathrm{d} t} (\alpha y_1 + \beta y_2) + q (\alpha y_1 + \beta y_2)
+  \end{equation*}
+  Men både ligningen, og operasjonen derivasjon, er lineære, så vi har også at
+  \begin{equation*}
+    \begin{split}
+      & \frac{\mathrm{d}^2}{\mathrm{d} t^2}(\alpha y_1 + \beta y_2) + p \frac{\mathrm{d}}{\mathrm{d} t} (\alpha y_1 + \beta y_2) + q (\alpha y_1 + \beta y_2) \\
+      & = \alpha (\ddot{y}_1 + p \dot{y}_1 + q y_1) + \beta (\ddot{y}_2 + p \dot{y}_2 + q y_2).
+    \end{split}
+  \end{equation*}
+  Dette betyr at
+  \begin{equation*}
+    \alpha (\ddot{y}_1 + p \dot{y}_1 + q y_1) + \beta (\ddot{y}_2 + p \dot{y}_2 + q y_2) = 0,
+  \end{equation*}
+  så både $y_1(t)$ og $y_2(t)$ løser ligningen. Så vi har bevist lineærkombinasjonen $\alpha y_1(t) + \beta y_2(t)$ løser ligningen dersom $y_1(t)$ og $y_2(t)$ løser ligningen.
+\end{bevis}
 
 
 \newpage
