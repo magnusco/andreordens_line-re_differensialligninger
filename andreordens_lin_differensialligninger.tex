@@ -245,7 +245,7 @@ der $p$ og $q$ er to vilkårlige konstanter. Først gjør vi en observasjon om l
     hvor $c_1$ og $c_2$ er to ubestemte konstanter, og $y_1(t)$ og $y_2(t)$ er to lineært uavhengige funksjoner. Med en spesiell løsning til ligningen mener vi løsningen vi får ved å tilordne konstantene $c_1$ og $c_2$ i den generelle løsningen bestemte verdier gitt av initialbetingelser.
 \end{defn}
 
-Husk at to funksjoner er lineært uavhengige dersom $\alpha y_1(t) + \beta y_2(t) = 0$ impliserer at $y_1(y) = 0 = y_2(t)$, for alle $\alpha, \beta \in \mathbb{C}$. Hvis to lineært uavhengige funksjoner $y_1(t)$ og $y_2(t)$ begge løser \eqref{eq:homogen} sier vi at disse er en basis for løsningsrommet til ligningen.
+Husk at to funksjoner er lineært uavhengige dersom $\alpha y_1(t) + \beta y_2(t) = 0$ impliserer at $y_1(t) = 0 = y_2(t)$, for alle $\alpha, \beta \in \mathbb{C}$ med $\alpha,\beta \neq 0$. Hvis to lineært uavhengige funksjoner $y_1(t)$ og $y_2(t)$ begge løser \eqref{eq:homogen} sier vi at disse er en basis for løsningsrommet til ligningen.
 
 Vi ønsker nå å finne en generell løsning til ligning \eqref{eq:homogen} for vilkårlige koeffisienter $p$ og $q$. Innsetting av funksjonen $y(t) = e^{\lambda t}$ som en løsningskandidat gir
 \begin{equation*}
@@ -277,7 +277,7 @@ fordi $e^{\lambda_1 t}$ og $e^{\lambda_2 t}$ er lineært uavhengige funksjoner f
 \begin{equation*}
   y_h(t) = c_1 e^{\lambda_1 t} + c_2 e^{\lambda_2 t},
 \end{equation*}
-men nå vil denne oppføre seg annerledes, og vi skal derfor også skrive den på en annen måte. Eulers formel gir oss at $e^{i t} = \cos(x) + i \sin(x)$. Vi observerer at røttene til den karakteristiske ligningen har samme reell del, og kan skrives på formen
+men nå vil denne oppføre seg annerledes, og vi skal derfor også skrive den på en annen måte. Eulers formel gir oss at $e^{i t} = \cos(t) + i \sin(t)$. Vi observerer at røttene til den karakteristiske ligningen har samme reell del, og kan skrives på formen
 \begin{equation*}
   \lambda_1 = r + i \omega \ \ \textnormal{ og }\ \ \lambda_2 = r - i \omega.
 \end{equation*}
@@ -292,8 +292,7 @@ Men ved Teorem \ref{thm:lin_komb_losning} er alle lineærkombinasjoner av $y_1(t
     & \frac{1}{2i}y_1(t) - \frac{1}{2i} y_2(t) = e^{r t} \sin(\omega t).
   \end{split}
 \end{equation*}
-Videre vet vi at disse funksjonene
-lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \omega$ kan altså skrives på formen
+Videre vet vi at disse funksjonene er lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \omega$ kan altså skrives på formen
 \begin{equation*}
   y_h(t) = e^{r t} (c_1 \cos(\omega t) + c_2 \sin(\omega t)).
 \end{equation*}
@@ -307,7 +306,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
   \begin{equation*}
     \lambda^2 + \frac{k}{m} = 0,
   \end{equation*}
-  med røtter $\lambda = \pm i \sqrt{m / k}$. Den generelle løsningen er dermed gitt ved
+  med røtter $\lambda = \pm i \sqrt{k/m}$. Den generelle løsningen er dermed gitt ved
   \begin{equation*}
     y(t) = c_1 \cos\bigg(\sqrt{\frac{k}{m}} t\bigg) + c_2 \sin\bigg(\sqrt{\frac{k}{m}} t\bigg),
   \end{equation*}
@@ -353,7 +352,7 @@ lineært uavhengige. Den generelle løsningen for komplekse røtter $r \pm i \om
   \begin{equation*}
     \lambda = - \frac{1}{2 R C} \pm \sqrt{\frac{1}{(2 R C)^2} - \frac{1}{LC}}.
   \end{equation*}
-  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$, $L = 20 $ mH og $C = 5$ $\mu$F, og at kretsen blir utsatt for en puls ved tiden $t = 0$ gitt ved $V(0) = 50$ V og $\dot{V}(0) = 0$. Da er $\lambda = -2000 \pm \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
+  Anta nå at vi har gitt verdiene $R = 50$ $\Omega$, $L = 20 $ mH og $C = 5$ $\mu$F, og at kretsen blir utsatt for en puls ved tiden $t = 0$ gitt ved $V(0) = 50$ V og $\dot{V}(0) = 0$. Da er $\lambda = -2000 \pm i \sqrt{6 \cdot 10^6}$, og spenningen over kondensatoren er
   \begin{equation*}
     V(t) = 50 e^{- 2000 t} \cos(\sqrt{6 \cdot 10^6} t),
   \end{equation*}
@@ -385,9 +384,9 @@ Vi skal ikke bevise dette teoremet, men bruke det til å vise at vår betegnelse
 \end{merk}
 
 \begin{bevis}
-  La $Y(x)$ være en vilkårlig løsning til \eqref{eq:homogen} på intervallet $I$. Med løsningsteknikken over kan vi alltid finne en generell løsning gitt ved
+  La $Y(t)$ være en vilkårlig løsning til \eqref{eq:homogen} på intervallet $I$. Med løsningsteknikken over kan vi alltid finne en generell løsning gitt ved
   \begin{equation*}
-    y_h(x) = c_1 y_1(t) + c_2 y_2(t),
+    y_h(t) = c_1 y_1(t) + c_2 y_2(t),
   \end{equation*}
   hvor $y_1(t)$ og $y_2(t)$ er lineært uavhengige. La nå $t_0$ være et vilkårlig punkt på intervallet $I$. Ligningssystemet
   \begin{equation*}
@@ -430,7 +429,7 @@ hvor $p$ og $q$ er to vilkårlige konstanter, og $r(t)$ er en kontinuerlig funks
 
 Det finnes flere løsningstrategier for ligning \eqref{eq:inhomogen}. Ubestemte koeffisienters metode er praktisk i mange situasjoner og lett å forstå, men kan ikke brukes til alle typer funksjoner $r(t)$. Variasjon av parametre er en mer generell metode, men kan kreve litt mer regning. Vi skal se på begge.
 
-\paragraph*{Ubestemte koeffisienters metode.} Metoden går ut på å gjette hva den partikulærløsningen til ligningen kan være avhengig av formen på $r(t)$. Først løser vi den homogene ligningen, før vi prøver å bestemme $y_p(t)$ ved å tilpasse parametre i en passende gjetningsfunksjon. For å illustrere dette ser vi på et eksempel.
+\paragraph*{Ubestemte koeffisienters metode.} Metoden går ut på å gjette hva partikulærløsningen til ligningen kan være avhengig av formen på $r(t)$. Først løser vi den homogene ligningen, før vi prøver å bestemme $y_p(t)$ ved å tilpasse parametre i en passende gjetningsfunksjon. For å illustrere dette ser vi på et eksempel.
 
 \begin{ex}
   Betrakt ligningen
@@ -458,7 +457,7 @@ I eksempelet over brukte vi kunnskapen om at eksponensialfunksjonen ikke endres 
     $r(t)$ & $y_p(t)$ \\
     \hline \\
     $ke^{\lambda t}$ & $A e^{\lambda t}$ \\
-    $k x^{n}$ & $A_n x^n + \cdots + A_0$ \\
+    $k t^{n}$ & $A_n t^n + \cdots + A_0$ \\
     $k \cos(\omega t)$, $k \sin(\omega t)$ & \noindent\parbox[b]{\hsize}{$A \cos(\omega t) + B\sin(\omega t)$} \\
     $k e^{\lambda t} \cos(\omega t)$, $k e^{\lambda t} \sin(\omega t)$ & $e^{\lambda t} (A \cos(\omega t) + B\sin(\omega t))$ \\
   \end{tabular}
@@ -614,13 +613,13 @@ Merk at integrasjonskonstantene i både $v_1(t)$ og $v_2(t)$ kan settes lik null
   Nå kan vi regne ut at $W(t) = e^{2t}$, og dermed
   \begin{equation*}
     \begin{split}
-      & v_1(t) = - \int \frac{t e^t e^t}{(t^2 + 1) e^2t} \mathop{dt} = - \ln(t^2 + 1), \\
-      & v_2(t) = - \int \frac{e^t e^t}{(t^2 + 1) e^2t} \mathop{dt} = \arctan(t).
+      & v_1(t) = - \int \frac{t e^t e^t}{(t^2 + 1) e^{2t}} \mathop{dt} = - \frac{1}{2} \ln(t^2 + 1), \\
+      & v_2(t) = - \int \frac{e^t e^t}{(t^2 + 1) e^{2t}} \mathop{dt} = \arctan(t).
     \end{split}
   \end{equation*}
   Partikulærløsningen er altså
   \begin{equation*}
-    y_p(t) = - e^t \ln(t^2 + 1) + t e^t \arctan(t).
+    y_p(t) = - \frac{e^t}{2} \ln(t^2 + 1) + t e^t \arctan(t).
   \end{equation*}
 \end{ex}
 
@@ -688,6 +687,8 @@ Slike systemer har vi lært å løse tidligere ved hjelp av den karakteristiske 
   \end{bmatrix}.
 \end{equation*}
 Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$ er helt tilsvarende det å finne $y(t)$ slik vi gjorde ovenfor, og at metodene gir samme resultat. Dette gjelder selvfølgelig også for den inhomogene ligningen.
+
+Fordelen med dette er åpenbar: Mens metodene vi har sett på for andreordens lineære differensialligninger over er relativt enkle, er det ikke lett å se hvordan man skal generalisere til høyere ordens ligninger. Ved å skrive om ligningen til et system har vi redusert problemet med å løse differensialligningen til å finne egenverdiene og egenvektorene til en matrise, altså lineæralgebra!
 
 \newpage
 
