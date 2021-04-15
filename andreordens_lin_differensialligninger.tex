@@ -688,7 +688,7 @@ Slike systemer har vi lært å løse tidligere ved hjelp av den karakteristiske 
 \end{equation*}
 Nå er det ikke vanskelig å se at det å finne en løsning for $[v_1, v_2]^{T}$ er helt tilsvarende det å finne $y(t)$ slik vi gjorde ovenfor, og at metodene gir samme resultat. Dette gjelder selvfølgelig også for den inhomogene ligningen.
 
-Fordelen med dette er åpenbar: Mens metodene vi har sett på for andreordens lineære differensialligninger over er relativt enkle, er det ikke lett å se hvordan man skal generalisere til høyere ordens ligninger. Ved å skrive om ligningen til et system har vi redusert problemet med å løse differensialligningen til å finne egenverdiene og egenvektorene til en matrise, altså lineæralgebra!
+Fordelen med dette er åpenbar. Mens metodene vi har sett på for andreordens lineære differensialligninger over er relativt enkle, er det ikke lett å se hvordan man skal generalisere til høyere ordens ligninger. Ved å skrive om ligningen til et system har vi redusert problemet med å løse differensialligningen til å finne egenverdiene og egenvektorene til en matrise, altså lineæralgebra!
 
 \newpage
 
@@ -806,7 +806,7 @@ Fordelen med dette er åpenbar: Mens metodene vi har sett på for andreordens li
   \end{itemize}
 \end{oppg}
 
-\begin{oppg}  
+\begin{oppg} \label{oppg:serie_krets_oppgave}
   Betrakt følgende krets.
   \begin{center}
     \begin{circuitikz}
@@ -824,6 +824,18 @@ Fordelen med dette er åpenbar: Mens metodene vi har sett på for andreordens li
     \item[(b)] Anta at $C_1=0.05\ \mathrm{F}$, $C_2=0.02\ \mathrm{F}$, $R=11\ \mathrm{\Omega}$, $L=0.1\ \mathrm{H}$ og $V_s(t)=100 \sin(400 t)\ \mathrm{V}$. Finn en generell løsning til ligningen.
     \item[(c)] Anta nå at $I(0) = \dot{I}(0) = 0$. Finn den spesielle løsningen til ligningen.
   \end{itemize}
+\end{oppg}
+
+\begin{oppg}
+  La nå spenningskilden fra oppgave \ref{oppg:serie_krets_oppgave} være gitt som den periodiske utviklingen av trekantbølgen, det vil si
+  \begin{equation*}
+    V_s(t) =
+    \begin{cases}
+      t + \pi & -\pi < t < 0, \\
+      \pi - t & 0 \leq t < \pi \\
+    \end{cases}
+  \end{equation*}
+  på $(-\pi, \pi)$. Finn en generell løsning til ligningen for strømmen i kretsen.
 \end{oppg}
 
 \begin{oppg}  
@@ -948,12 +960,102 @@ Fordelen med dette er åpenbar: Mens metodene vi har sett på for andreordens li
     \end{equation*}
     \item[(c)] $y(t) = t^2 e^t + 4te^t + 4te^{2t} - 6 e^{2t} + 6e^t$.
   \end{itemize}
-  
+\end{customoppg}
+
+\begin{customoppg}{11}
+  \leavevmode
+  Ligningen for strømmen i kretsen er
+\begin{equation} \label{eq:oppgave_ligning}
+    L \ddot{I}(t) + R \dot{I}(t) + \frac{1}{C} I(t) = \dot{V}_s(t),
+\end{equation}
+der
+\begin{equation*}
+    \frac{1}{C} = \frac{1}{C_1} + \frac{1}{C_2},
+\end{equation*}
+og
+\begin{equation*}
+    \dot{V}_s(t) = 
+    \begin{cases}
+        -1 & \textnormal{ for }\ 2n \pi \leq t < (2n + 1) \pi, \\
+        1 & \textnormal{ for }\ (2n + 1) \pi \leq t < (2n + 2) \pi
+    \end{cases}
+\end{equation*}
+for $n \in \mathbb{N}$, altså firkantbølgen med periode $2\pi$. Den generelle løsningen er på formen $I(t) = I_h(t) + I_p(t)$.
+
+Vi finner den homogene løsningen. Den karakteristiske ligningen er
+\begin{equation*}
+    L \lambda^2 + R \lambda + \frac{1}{C} = 0,
+\end{equation*}
+med røtter
+\begin{equation*}
+    r_1 = \frac{- R + \sqrt{R^2 - \frac{4L}{C}}}{2L}, \qquad r_2 = \frac{- R - \sqrt{R^2 - \frac{4L}{C}}}{2L}.
+\end{equation*}
+Dermed er den homogene løsningen gitt ved
+\begin{equation*}
+    I_h(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t},
+\end{equation*}
+for vilkårlige konstanter $C_1$ og $C_2$.
+
+Vi finner den partikulære løsningen. Siden funksjonen $\dot{V}_s(t)$ er odde kan vi utvikle funksjonen som en sinusrekke, gitt ved
+\begin{equation*}
+    \dot{V}_s(t) = \sum_{n = 0}^{\infty} d_n \sin(nt).
+\end{equation*}
+Da finner man at
+\begin{equation*}
+    d_n =
+    \begin{cases}
+        0 & \qquad \textnormal{hvis } n \textnormal{ jevn}, \\
+        -\frac{4}{\pi n} & \qquad \textnormal{hvis } n \textnormal{ odde}.
+    \end{cases}
+\end{equation*}
+Vi bruker nå ubestemte koeffisienters metode til å gjette at den partikulære løsningen til ligningen er på formen
+\begin{equation*}
+    I_p(t) = a_0 + \sum_{n = 0}^{\infty} a_n \cos(n t) + b_n \sin(n t).
+\end{equation*}
+For å finne de ukjente koeffisientene $a_0$, $a_n$ og $b_n$ setter vi dette inn i \eqref{eq:oppgave_ligning}. Det gir
+\begin{equation*}
+    \begin{aligned}
+        L \bigg( \sum_{n = 0}^{\infty} -n^2 a_n \cos(n t) - n^2 b_n \sin(nt) \bigg)& \\ + R \bigg( \sum_{n = 0}^{\infty} -n a_n \sin(n t) + n b_n \cos(nt) \bigg) & \\ + \frac{1}{C} \bigg( \sum_{n = 0}^{\infty} a_n \cos(n t) + b_n \sin(nt) \bigg) & = \sum_{n = 0}^{\infty} d_n \sin(nt).
+    \end{aligned}
+\end{equation*}
+Ved å isolere sinus- og cosinusleddene får vi følgende to ligninger for de ukjente koeffisientene.
+\begin{equation*}
+    \begin{aligned}
+        & - L n^2 a_n + R n b_n + \frac{1}{C} a_n = 0 \\
+        & - L n^2 b_n - R n a_n + \frac{1}{C} b_n = d_n.
+    \end{aligned}
+\end{equation*}
+Dermed må
+\begin{equation*}
+    a_n = \frac{nR}{Ln^2 - \frac{1}{C}} b_n,
+\end{equation*}
+og videre finner man at
+\begin{equation*}
+    b_n = \frac{d_n}{\big(\frac{1}{C} - Ln^2\big) + \frac{(n R)^2}{\frac{1}{C} - Ln^2}}
+\end{equation*}
+Vi kan nå konkludere med at den partikulære løsningen er gitt ved
+\begin{equation*}
+    I_p(t) = \sum_{n = 0}^{\infty} a_n \cos(n t) + b_n \sin(n t),
+\end{equation*}
+hvor
+\begin{equation*}
+    a_n =
+    \begin{cases}
+        0 & \qquad \textnormal{hvis } n \textnormal{ jevn}, \\
+        \frac{4}{\pi n} \bigg[ \frac{nR}{\big(\frac{1}{C} - Ln^2\big)^2 + (nR)^2} \bigg] & \qquad \textnormal{hvis } n \textnormal{ odde},
+    \end{cases}
+\end{equation*}
+og
+\begin{equation*}
+    b_n =
+    \begin{cases}
+        0 & \qquad \textnormal{hvis } n \textnormal{ jevn}, \\
+        -\frac{4}{\pi n} \bigg[ \frac{1}{\big(\frac{1}{C} - Ln^2\big) + \frac{(n R)^2}{\frac{1}{C} - Ln^2}} \bigg] & \qquad \textnormal{hvis } n \textnormal{ odde}.
+    \end{cases}
+\end{equation*}
 \end{customoppg}
 
 
 
 \end{multicols*}
 \end{document}
-
-Med denne formuleringen i bakhodet er det naturlig å tenke seg at man også kan løse høyere ordens lineære ordinære differensialligninger uten at teorien blir særlig mye vanskeligere. Det er nesten sant. Ved høyere ordens ligninger er man for eksempel nødt til å finne egenverdier til større matriser. Men det er verdt å ta med seg at løsingen av slike ligninger i stor grad dreier seg om lineær algebra.
